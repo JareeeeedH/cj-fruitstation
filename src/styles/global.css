@@ -1,0 +1,673 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mango-50: #fff7ed;
+  --color-mango-100: #ffedd5;
+  --color-mango-400: #fb923c;
+  --color-mango-500: #f97316;
+  --color-mango-600: #ea580c;
+  --color-mint-50: #ecfdf5;
+  --color-mint-400: #34d399;
+  --color-mint-500: #10b981;
+  --color-mint-600: #059669;
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(16, 185, 129, 0.06), transparent 50%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%);
+}
+
+/* ── Scroll progress bar ── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-mint-400), var(--color-mango-500), var(--color-mint-500));
+  background-size: 200% 100%;
+  animation: shimmer-bar 3s linear infinite;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-mango-500) 50%, transparent);
+  transition: width 0.08s linear;
+}
+
+@keyframes shimmer-bar {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Floating juice bubbles ── */
+.bubble-field {
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 70%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset -4px -4px 12px rgba(255, 255, 255, 0.6),
+    inset 4px 4px 12px rgba(249, 115, 22, 0.08),
+    0 8px 32px rgba(16, 185, 129, 0.12);
+  animation: float-bubble var(--dur, 8s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: var(--opacity, 0.55);
+}
+
+.bubble--mango {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 237, 213, 0.9),
+    rgba(249, 115, 22, 0.2) 50%,
+    transparent 70%
+  );
+}
+
+.bubble--mint {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(236, 253, 245, 0.9),
+    rgba(16, 185, 129, 0.2) 50%,
+    transparent 70%
+  );
+}
+
+@keyframes float-bubble {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(12px, -18px) scale(1.04);
+  }
+  50% {
+    transform: translate(-8px, -32px) scale(0.96);
+  }
+  75% {
+    transform: translate(16px, -14px) scale(1.02);
+  }
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: translateY(24px) scale(0.94);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Modern UI components ── */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.2), rgba(16, 185, 129, 0.2), transparent) 1;
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.04),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.logo-glow {
+  background: linear-gradient(135deg, var(--color-mango-500) 0%, var(--color-mint-500) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+    0 4px 16px rgba(249, 115, 22, 0.35),
+    0 0 24px rgba(16, 185, 129, 0.2);
+}
+
+.tech-pill {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow:
+    0 0 20px rgba(16, 185, 129, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.8) inset;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(249, 115, 22, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.modern-card {
+  position: relative;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modern-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.35),
+    rgba(16, 185, 129, 0.25) 50%,
+    rgba(249, 115, 22, 0.15)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.35s ease;
+}
+
+.modern-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 24px 48px rgba(249, 115, 22, 0.12),
+    0 0 32px rgba(16, 185, 129, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.modern-card:hover::before {
+  opacity: 1;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(249, 115, 22, 0.15);
+  color: var(--color-mango-600);
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.08);
+}
+
+.tech-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-mango-500), var(--color-mint-500));
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.section-title-tech {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #0f172a 0%, #334155 70%, var(--color-mango-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-accent-line {
+  margin-top: 0.875rem;
+  height: 3px;
+  width: 4rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-mango-500), var(--color-mint-500));
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.4), 0 0 24px rgba(16, 185, 129, 0.2);
+}
+
+.gradient-heading {
+  background: linear-gradient(135deg, #0f172a 0%, #475569 50%, var(--color-mango-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(249, 115, 22, 0.14), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(16, 185, 129, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255, 255, 255, 0.9), transparent),
+    linear-gradient(135deg, #f8fafc 0%, #ffffff 40%, #f0fdf8 100%);
+}
+
+.hero-mesh::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black, transparent 75%);
+  pointer-events: none;
+}
+
+.hero-aurora {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 50%, rgba(249, 115, 22, 0.15), transparent 60%),
+    radial-gradient(ellipse 45% 35% at 80% 30%, rgba(16, 185, 129, 0.12), transparent 55%);
+  animation: aurora-drift 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes aurora-drift {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  100% { transform: translate(3%, -2%) scale(1.05); opacity: 1; }
+}
+
+.tech-grid-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 45%, black 20%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 45%, black 20%, transparent 72%);
+  pointer-events: none;
+}
+
+.tech-scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.015) 2px,
+    rgba(255, 255, 255, 0.015) 4px
+  );
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(249, 115, 22, 0.35);
+}
+
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.btn-glow:hover::after {
+  transform: translateX(100%);
+}
+
+.cta-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, var(--color-mango-600) 35%, var(--color-mint-600) 100%);
+  background-size: 200% 200%;
+  animation: cta-shift 8s ease infinite;
+}
+
+.cta-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+@keyframes cta-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.image-placeholder-modern {
+  background:
+    linear-gradient(145deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 50%, rgba(255, 255, 255, 0.9) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  box-shadow:
+    inset 0 2px 12px rgba(255, 255, 255, 0.9),
+    0 0 24px rgba(249, 115, 22, 0.06);
+  overflow: hidden;
+}
+
+.image-placeholder-modern::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  animation: shimmer-placeholder 4s ease-in-out infinite;
+}
+
+@keyframes shimmer-placeholder {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+.scroll-hint {
+  animation: bounce-hint 2s ease-in-out infinite;
+}
+
+@keyframes bounce-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+.nav-link-modern {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link-modern::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, var(--color-mango-500), var(--color-mint-500));
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link-modern:hover::after {
+  width: 60%;
+  left: 20%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .reveal,
+  .reveal-scale,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .bubble,
+  .scroll-hint,
+  #scroll-progress,
+  .cta-gradient,
+  .hero-aurora,
+  .tech-badge::before,
+  .image-placeholder-modern::after {
+    animation: none;
+  }
+
+  .modern-card:hover {
+    transform: none;
+  }
+}
+
+/* ── Section backgrounds ── */
+.section-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.section-bg > .section-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* 關於我們：暖橘點陣 + 右上光暈 + 科技网格 */
+.section-bg-about {
+  background: linear-gradient(165deg, #f8fafc 0%, #fffbf5 45%, #fff7ed 100%);
+}
+
+.section-bg-about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(249, 115, 22, 0.09) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(180deg, black 0%, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, black 0%, black 60%, transparent 100%);
+  pointer-events: none;
+}
+
+.section-bg-about::after {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.14) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+/* 果汁好物：斜向柔紋 + 雙色光斑 */
+.section-bg-menu {
+  background: linear-gradient(
+    180deg,
+    #f8faf9 0%,
+    #fff9f3 35%,
+    #f0fdf8 70%,
+    #ffffff 100%
+  );
+}
+
+.section-bg-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(135deg, rgba(249, 115, 22, 0.04) 25%, transparent 25%, transparent 50%, rgba(249, 115, 22, 0.04) 50%, rgba(249, 115, 22, 0.04) 75%, transparent 75%, transparent),
+    linear-gradient(45deg, rgba(16, 185, 129, 0.03) 25%, transparent 25%, transparent 50%, rgba(16, 185, 129, 0.03) 50%, rgba(16, 185, 129, 0.03) 75%, transparent 75%, transparent);
+  background-size: 48px 48px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.section-bg-menu::after {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  left: -60px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* 觀光導覽：海風薄荷 + 底部波浪 */
+.section-bg-guide {
+  background: linear-gradient(180deg, #fafffe 0%, #ecfdf5 55%, #ffffff 100%);
+}
+
+.section-bg-guide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.section-bg-guide::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") bottom / 100% 80px no-repeat;
+  pointer-events: none;
+}
+
+/* 水果讀物：紙張橫線質感 */
+.section-bg-reading {
+  background: linear-gradient(180deg, #f0fdf8 0%, #ffffff 40%, #fffbf5 100%);
+}
+
+.section-bg-reading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 31px,
+    rgba(16, 185, 129, 0.06) 31px,
+    rgba(16, 185, 129, 0.06) 32px
+  );
+  mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  pointer-events: none;
+}
+
+.section-bg-reading::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  right: -40px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+/* Footer 柔和收尾 */
+.section-bg-footer {
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  border-top: 1px solid rgba(249, 115, 22, 0.08);
+}
+
+.section-bg-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* 卡片在有色背景上更立體 */
+.section-bg .modern-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+
+.section-bg .glass-card {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.price-tag-tech {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(249, 115, 22, 0.15);
+}
