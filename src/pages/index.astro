@@ -432,11 +432,31 @@ const jsonLd = {
               📍 店面位置
             </h3>
             <div class="section-accent-line mb-4"></div>
-            <p class="mb-4 text-left text-sm text-gray-600">
-              高雄市旗津區中洲三路641<br />
-              <span class="text-mint-600 font-medium">距離旗津渡輪站步行約 6 分鐘</span><br />
-              <span class="mt-1 inline-block text-gray-500">海洋科技大學斜對面，走路約 1 分鐘</span>
-            </p>
+            <div class="location-info mb-4">
+              <p class="location-info__address">
+                <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>高雄市旗津區中洲三路641</span>
+              </p>
+              <ul class="location-info__refs list-none p-0">
+                <li class="location-info__ref">
+                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>距離旗津渡輪站步行約 6 分鐘</span>
+                </li>
+                <li class="location-info__ref">
+                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>海洋科技大學斜對面，走路約 1 分鐘</span>
+                </li>
+              </ul>
+            </div>
             <div
               id="map-placeholder"
               class="relative h-72 overflow-hidden rounded-3xl border border-gray-200/80 shadow-lg shadow-gray-200/50 sm:h-96"
@@ -720,10 +740,31 @@ const jsonLd = {
         <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div class="text-center sm:text-left">
             <p class="text-lg font-extrabold text-mango-600">旗津必吃 | 在地鮮果汁冰沙吧</p>
-            <p class="mt-1 text-sm text-gray-500">
-              高雄市旗津區中洲三路641<br />
-              渡輪站步行約 6 分鐘 · 海洋科技大學斜對面走路約 1 分鐘
-            </p>
+            <div class="location-info location-info--footer mt-2">
+              <p class="location-info__address">
+                <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>高雄市旗津區中洲三路641</span>
+              </p>
+              <ul class="location-info__refs list-none p-0">
+                <li class="location-info__ref">
+                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>距離旗津渡輪站步行約 6 分鐘</span>
+                </li>
+                <li class="location-info__ref">
+                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>海洋科技大學斜對面，走路約 1 分鐘</span>
+                </li>
+              </ul>
+            </div>
           </div>
           <nav aria-label="頁尾導覽">
             <ul class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">

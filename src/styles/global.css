@@ -673,6 +673,62 @@ body {
   text-shadow: 0 0 20px rgba(249, 115, 22, 0.15);
 }
 
+/* ── Location: address + landmark refs ── */
+.location-info {
+  text-align: left;
+}
+
+.location-info__address {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: #111827;
+}
+
+.location-info__address-icon {
+  flex-shrink: 0;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: 0.1rem;
+  color: var(--color-mango-500);
+}
+
+.location-info__refs {
+  margin-top: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.location-info__ref {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.location-info__landmark-icon {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.15rem;
+  color: var(--color-mint-600);
+}
+
+.location-info--footer .location-info__address {
+  font-size: 1rem;
+}
+
+.location-info--footer .location-info__ref {
+  font-size: 0.8125rem;
+}
+
 /* ── Menu carousel: mobile-first, desktop 3-column ── */
 .menu-carousel-wrap {
   --slide-gap: 1rem;
