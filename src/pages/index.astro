@@ -1,58 +1,78 @@
 ---
 import "../styles/global.css";
 
+const imgHero = "/juice-1.png";
+const imgStorefront = "/homePhoto-3.jpg";
+const imgMenuProduct = "/juice-2.png";
+
 const siteTitle = "旗津必吃 | 在地鮮果汁冰沙吧 — 高雄現打果汁老店";
 const siteDescription =
-  "旗津必吃鮮果汁冰沙吧，在地20年老店。走旗津一日遊觀光路線會經過，但很多遊客壓根不知道。中洲三路641，距離渡輪站步行約3分鐘。真水果現點現打，旗津美食與在地內行才知道的好味道。";
+  "旗津必吃鮮果汁冰沙吧，在地經營20餘年、用料實在。當地居民、造船廠藍領、海洋科技大學學生每日固定的營養補給站。走旗津一日遊會經過，但攻略很少寫——中洲三路641，渡輪站步行約6分鐘。";
 
 const menuItems = [
   {
-    name: "木瓜牛奶",
-    nameEn: "Papaya Milk",
-    price: 65,
-    tag: "20年經典",
+    name: "高機能石蓮花奇異果",
+    nameEn: "Cactus Pear & Kiwi",
+    price: 85,
+    tag: "招牌推薦",
     tagColor: "bg-mango-500",
-    desc: "土木瓜現打，濃稠順口、不死甜。旗津當地居民喝了二十年的那杯，老客人不換別家。",
+    intro: "石蓮花配黃金奇異果，清爽高機能，走累曬後最該補的一杯。",
   },
   {
-    name: "芒果冰沙",
-    nameEn: "Mango Smoothie",
-    price: 70,
-    tag: "夏日招牌",
+    name: "抗氧化蔓越莓",
+    nameEn: "Antioxidant Cranberry",
+    price: 80,
+    tag: "老店研發",
     tagColor: "bg-mint-500",
-    desc: "愛文芒果打冰沙，走完整條旗津老街，來這杯最剛好。",
+    intro: "蔓越莓現榨酸甜，抗氧化系飲品，內行女生常來的秘密杯。",
   },
   {
-    name: "西瓜汁",
-    nameEn: "Watermelon Juice",
-    price: 55,
-    tag: "造船藍領最愛",
+    name: "愛文芒果冰沙",
+    nameEn: "Irwin Mango Smoothie",
+    price: 75,
+    tag: "20年經典",
     tagColor: "bg-mango-400",
-    desc: "大顆西瓜現榨，造船廠下班的藍領大哥最愛。扛完一上午，來這杯補水補勁，不加水騙人。",
+    intro: "愛文芒果現打冰沙，濃郁不膩，旗津老街走完最對味。",
   },
   {
-    name: "綜合果汁",
-    nameEn: "Mixed Fresh Juice",
-    price: 60,
-    tag: "看老闆心情",
-    tagColor: "bg-mint-400",
-    desc: "當天市場有什麼好貨就打什麼，每次來可能不一樣，但杯杯真材實料。",
-  },
-  {
-    name: "芭樂汁",
-    nameEn: "Guava Juice",
-    price: 55,
-    tag: "南部味",
+    name: "紅龍果牛奶",
+    nameEn: "Dragon Fruit Milk",
+    price: 70,
+    tag: "在地最愛",
     tagColor: "bg-mint-600",
-    desc: "紅心芭樂現榨，酸甘帶勁。海科大學生下課常來買——旗津學子固定的營養補充站。",
+    intro: "紅龍果撞鮮奶，粉嫩順口，居民跟學生午後固定點。",
   },
   {
-    name: "鳳梨冰沙",
-    nameEn: "Pineapple Smoothie",
+    name: "綜合蔬果汁",
+    nameEn: "Mixed Veggie Juice",
+    price: 65,
+    tag: "健康首選",
+    tagColor: "bg-mint-400",
+    intro: "當季蔬菜現榨，清甜不生澀，想顧健康的人內行都喝。",
+  },
+  {
+    name: "經典木瓜牛奶",
+    nameEn: "Classic Papaya Milk",
     price: 65,
     tag: "20年經典",
     tagColor: "bg-mango-500",
-    desc: "金鑽鳳梨打冰沙，酸甜剛好。旗津夏天扛太陽，這杯最解。",
+    intro: "土木瓜現打配鮮奶，濃稠順口不死甜，老客人喝了二十年。",
+  },
+  {
+    name: "葡萄汁多多",
+    nameEn: "Grape Duoduo",
+    price: 70,
+    tag: "人氣必點",
+    tagColor: "bg-mint-500",
+    intro: "葡萄現榨加多多，酸甜帶氣泡感，夏天旗津最想再來一杯。",
+  },
+  {
+    name: "綠豆沙牛奶",
+    nameEn: "Mung Bean Milk",
+    price: 65,
+    tag: "南部經典",
+    tagColor: "bg-mango-400",
+    intro: "綠豆熬香撞鮮奶，消暑順口不膩，老客人說這杯最實在。",
   },
 ];
 
@@ -79,7 +99,7 @@ const attractions = [
     name: "星空隧道",
     emoji: "✨",
     keywords: "旗津必吃 · 海濱散步",
-    desc: "穿越隧道吹完全身海風，這時候一杯現榨西瓜汁最對味。走觀光路線會經過，但你可能就這樣走過去了——造船藍領、海科大的內行才會停，這才是<strong>旗津必吃</strong>。",
+    desc: "穿越隧道吹完全身海風，這時候一杯現榨果汁最對味。走觀光路線會經過，但你可能就這樣走過去了——造船廠藍領、海洋科技大學學生的內行才會停。",
   },
   {
     name: "風車公園",
@@ -111,7 +131,7 @@ const articles = [
     date: "2025-04-02",
     readTime: "4 分鐘",
     excerpt:
-      "便利商店冰櫃一排排，但造船廠幹活的、海科大晚課後的，最知道現打果汁才解得了渴。維生素C、鉀，現場現做才留得住——旗津人的營養補充，不必花大錢。",
+      "便利商店冰櫃一排排，但造船廠幹活的、海洋科技大學晚課後的，最知道現打果汁才解得了渴。維生素C、鉀，現場現做才留得住——旗津人的營養補充，不必花大錢。",
     category: "解渴指南",
   },
   {
@@ -120,7 +140,7 @@ const articles = [
     date: "2025-05-10",
     readTime: "5 分鐘",
     excerpt:
-      "天亮去市場，摸熟度、看當季。20年下來就一套：好果才打、你點了才做。走旗津一日遊路線會經過，但遊客常常不知道；旗津當地居民跟造船藍領不用問，內行都懂這間。",
+      "天亮去市場，摸熟度、看當季。20餘年下來就一套：好果才打、你點了才做。走旗津一日遊路線會經過，但攻略很少寫——當地居民、造船廠藍領、海洋科技大學學生，內行都懂這間。",
     category: "品牌故事",
   },
 ];
@@ -252,7 +272,7 @@ const jsonLd = {
           href="#menu"
           class="btn-glow rounded-full bg-mango-500 px-4 py-2 text-xs font-bold text-white shadow-md shadow-mango-500/30 hover:bg-mango-600 sm:text-sm"
         >
-          先選口味
+          推薦飲品
         </a>
       </nav>
 
@@ -291,22 +311,22 @@ const jsonLd = {
               <span
                 class="tech-pill mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-mint-600"
               >
-                🌴 旗津在地 · 內行人的營養補充站
+                🌴 在地經營20餘年 · 內行人的營養補充站
               </span>
               <h1 class="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
                 <strong class="bg-gradient-to-r from-mango-600 to-mango-500 bg-clip-text text-transparent">旗津必吃</strong><br />
                 <span class="gradient-heading">現打鮮果汁冰沙吧</span>
               </h1>
               <p class="mt-4 max-w-lg text-base leading-relaxed text-gray-600 sm:text-lg">
-                真水果、現點現打。手機選好亮給夥伴看，免排隊、快出杯。
-                走<strong>旗津一日遊</strong>觀光路線會經過這裡，但很多遊客壓根不知道——當地居民、造船藍領、海科大的內行才會停。這杯<strong>高雄現打果汁</strong>，路過別就這樣走過去了。
+                在地經營、用料實在。當地居民、造船廠藍領、海洋科技大學學生，每天來這補一杯——觀光客多半不知道。
+                走<strong>旗津一日遊</strong>路線其實會經過，但攻略很少寫；路過別就這樣走過去了。
               </p>
               <div class="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#menu"
                   class="btn-glow inline-flex items-center gap-2 rounded-full bg-mango-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-mango-500/30 hover:bg-mango-600"
                 >
-                  先看菜單
+                  看推薦飲品
                   <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
@@ -321,18 +341,17 @@ const jsonLd = {
             </div>
 
             <div class="reveal-right">
-            <!-- Hero image placeholder -->
-            <div
-              class="image-placeholder-modern relative flex aspect-[4/3] flex-col items-center justify-center overflow-hidden rounded-3xl"
-              role="img"
-              aria-label="店面形象圖片占位"
-            >
-              <svg class="mb-3 h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <p class="text-sm font-semibold text-gray-500">Hero 形象圖占位</p>
-              <p class="mt-1 text-xs text-gray-400">替換為店面或果汁照片</p>
-            </div>
+              <div class="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-mango-500/10 ring-1 ring-black/5">
+                <img
+                  src={imgHero}
+                  alt="旗津必吃現打鮮果汁"
+                  class="h-full w-full object-cover"
+                  width={800}
+                  height={600}
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </div>
             </div>
           </div>
 
@@ -354,21 +373,23 @@ const jsonLd = {
             <h2 class="section-title-tech mt-4">關於我們</h2>
             <div class="section-accent-line"></div>
             <p class="mt-4 max-w-2xl text-gray-600">
-              開了20年，就在觀光動線上。走旗津一日遊會經過，但你不知道——內行早就來買了。
+              在地經營20餘年，用料實在。當地居民、造船廠藍領、海洋科技大學學生，每天固定的營養補給站——觀光客多半不知道，但走旗津一日遊其實會經過。
             </p>
           </div>
 
           <div class="grid items-start gap-10 lg:grid-cols-2">
             <div class="reveal-left space-y-6" style="--reveal-delay:0.1s">
               <div class="glass-card rounded-3xl p-6 sm:p-8">
-                <h3 class="text-xl font-bold text-gray-900">開了20年，規矩沒變過</h3>
+                <h3 class="text-xl font-bold text-gray-900">在地20餘年，規矩沒變過</h3>
                 <p class="mt-3 leading-relaxed text-gray-600">
-                  從2005年到現在，就一套：水果要熟、你點了才打、不多加糖騙人。
+                  從開業到現在，就一套：好水果要熟、你點了才打、不多加糖騙人。
                   杯杯現做，喝到的就是水果本身，不是調味料調出來的。
                 </p>
                 <p class="mt-3 leading-relaxed text-gray-600">
-                  中洲三路641，距離渡輪站步行約3分鐘——<strong>旗津一日遊推薦</strong>路線幾乎都會經過這帶，但不少遊客就這樣走過去。
-                  熟客是旗津當地居民、造船廠幹活的藍領、搭船過海來補體力的海科大學生；不用排隊、手機亮單、馬上出杯，這才是<strong>在地內行才知道</strong>的<strong>旗津必吃</strong>。
+                  除了經典產地鮮果，還有老店自己研發的頂級蔬果吧——品項多到你可能選擇困難，但內行都知道來這裡就對了。
+                </p>
+                <p class="mt-3 leading-relaxed text-gray-600">
+                  中洲三路641，渡輪站步行約6分鐘、海洋科技大學斜對面走路約1分鐘。<strong>旗津一日遊</strong>攻略很少寫我們，但路線幾乎都會經過——當地居民、造船廠藍領、海洋科技大學學生，每天固定的營養補給站。
                 </p>
                 <ul class="mt-6 space-y-3">
                   <li class="flex items-start gap-3">
@@ -381,7 +402,7 @@ const jsonLd = {
                   </li>
                   <li class="flex items-start gap-3">
                     <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-50 text-mint-500 text-xs">✓</span>
-                    <span class="text-sm text-gray-700">手機菜單選好、現場出示，即打即出杯，免排隊</span>
+                    <span class="text-sm text-gray-700">到現場點、即打即出杯，杯杯現做不趕工</span>
                   </li>
                   <li class="flex items-start gap-3">
                     <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-50 text-mint-500 text-xs">✓</span>
@@ -391,21 +412,16 @@ const jsonLd = {
               </div>
             </div>
 
-            <!-- Storefront image placeholder -->
             <div class="reveal-right space-y-4" style="--reveal-delay:0.2s">
-              <div
-                class="image-placeholder-modern relative flex aspect-[4/3] flex-col items-center justify-center overflow-hidden rounded-3xl"
-                role="img"
-                aria-label="店面外觀照片占位"
-              >
-                <svg class="mb-3 h-14 w-14 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <p class="text-sm font-bold text-gray-500">店面外觀圖占位</p>
-                <p class="mt-1 rounded-md bg-white/80 px-3 py-1 font-mono text-xs text-mango-600">
-                  watermarked_img_9304986809321702887.png
-                </p>
-                <p class="mt-1 text-xs text-gray-400">請替換為實際店面照片</p>
+              <div class="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-mint-500/10 ring-1 ring-black/5">
+                <img
+                  src={imgStorefront}
+                  alt="旗津必吃店面外觀 · 高雄市旗津區中洲三路641"
+                  class="h-full w-full object-cover"
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -418,7 +434,8 @@ const jsonLd = {
             <div class="section-accent-line mb-4"></div>
             <p class="mb-4 text-left text-sm text-gray-600">
               高雄市旗津區中洲三路641<br />
-              <span class="text-mint-600 font-medium">距離旗津渡輪站步行約 3 分鐘</span>
+              <span class="text-mint-600 font-medium">距離旗津渡輪站步行約 6 分鐘</span><br />
+              <span class="mt-1 inline-block text-gray-500">海洋科技大學斜對面，走路約 1 分鐘</span>
             </p>
             <div
               id="map-placeholder"
@@ -456,57 +473,108 @@ const jsonLd = {
             <h2 class="section-title-tech mt-4">果汁好物</h2>
             <div class="section-accent-line"></div>
             <p class="mt-4 max-w-2xl text-gray-600">
-              旗津當地居民、造船藍領、海科大學生口耳相傳的招牌。按「＋」選好，現場出示手機畫面，夥伴馬上幫你現打。免排隊，拎了就走。
+              推薦款先從這八杯認識起。手機左右滑、電腦一次看三杯，都是現場點、現打現做——這裡只介紹口味，不線上下單。
             </p>
           </div>
 
-          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {
-              menuItems.map((item, i) => (
-                <article
-                  class="modern-card reveal-scale group overflow-hidden rounded-3xl"
-                  style={`--reveal-delay:${(i % 3) * 0.1}s`}
-                >
-                  {/* Drink image placeholder */}
-                  <div class="relative flex aspect-[5/3] flex-col items-center justify-center overflow-hidden border-b border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100">
-                    <svg class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
-                    <span class="mt-1 text-[10px] text-gray-400">{item.nameEn} 圖片占位</span>
-                    <span class={`absolute top-3 left-3 rounded-full px-2.5 py-0.5 text-[10px] font-bold text-white ${item.tagColor}`}>
-                      {item.tag}
-                    </span>
-                  </div>
-
-                  <div class="p-5">
-                    <div class="flex items-start justify-between gap-2">
-                      <div>
-                        <h3 class="text-lg font-bold text-gray-900">{item.name}</h3>
-                        <p class="text-xs text-gray-400">{item.nameEn}</p>
+          <div class="menu-carousel-wrap reveal" style="--reveal-delay:0.05s" id="menu-carousel-wrap">
+            <div class="menu-carousel-viewport" id="menu-carousel-viewport">
+              <div class="menu-carousel-track" id="menu-carousel-track">
+                {
+                  menuItems.map((item, i) => (
+                    <article
+                      class="menu-carousel-slide modern-card"
+                      data-slide-index={i}
+                    >
+                      <div class="menu-slide-image relative aspect-[4/3] overflow-hidden border-b border-gray-100/80 sm:aspect-[5/4]">
+                        <img
+                          src={imgMenuProduct}
+                          alt={`${item.name} — 旗津必吃現打果汁`}
+                          class="h-full w-full object-cover"
+                          width={640}
+                          height={480}
+                          loading="lazy"
+                        />
+                        <span class={`absolute top-3 left-3 z-10 rounded-full px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm ${item.tagColor}`}>
+                          {item.tag}
+                        </span>
+                        <span class="absolute top-3 right-3 z-10 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-bold text-gray-500 shadow-sm">
+                          {String(i + 1).padStart(2, "0")} / {String(menuItems.length).padStart(2, "0")}
+                        </span>
                       </div>
-                      <span class="price-tag-tech shrink-0 text-lg font-extrabold text-mango-600">
-                        NT${item.price}
-                      </span>
-                    </div>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-500">{item.desc}</p>
+
+                      <div class="menu-slide-body p-5 sm:p-6">
+                        <div class="flex items-start justify-between gap-3">
+                          <h3 class="menu-slide-title text-xl font-bold leading-snug text-gray-900 sm:text-lg lg:text-base">{item.name}</h3>
+                          <span class="price-tag-tech shrink-0 text-xl font-extrabold text-mango-600 sm:text-lg">
+                            NT${item.price}
+                          </span>
+                        </div>
+                        <p class="mt-1 text-xs text-gray-400">{item.nameEn}</p>
+                        <p class="menu-slide-intro mt-3 text-base leading-relaxed text-gray-600 sm:text-sm">{item.intro}</p>
+                        <p class="mt-5 rounded-xl border border-mango-100 bg-mango-50/60 px-4 py-3 text-center text-sm font-medium text-mango-700">
+                          來店現場點單 · 即打即做
+                        </p>
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div class="carousel-controls">
+              <button
+                type="button"
+                class="carousel-btn carousel-btn--prev"
+                id="menu-carousel-prev"
+                aria-label="上一組飲品"
+              >
+                <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span class="carousel-btn-label">上一杯</span>
+              </button>
+
+              <button
+                type="button"
+                class="carousel-btn carousel-btn--next"
+                id="menu-carousel-next"
+                aria-label="下一組飲品"
+              >
+                <span class="carousel-btn-label">下一杯</span>
+                <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="carousel-dots-wrap">
+              <div class="carousel-dots" id="menu-carousel-dots" role="tablist" aria-label="推薦飲品切換">
+                {
+                  menuItems.map((item, i) => (
                     <button
                       type="button"
-                      data-add-item
-                      data-item-name={item.name}
-                      class="btn-glow mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-mango-500 py-2.5 text-sm font-bold text-white hover:bg-mango-600 active:scale-[0.98]"
-                      aria-label={`加入 ${item.name} 至外帶清單`}
-                    >
-                      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-lg leading-none">+</span>
-                      ＋ 加外帶
-                    </button>
-                  </div>
-                </article>
-              ))
-            }
+                      class={`carousel-dot${i === 0 ? " is-active" : ""}`}
+                      data-slide-to={i}
+                      role="tab"
+                      aria-selected={i === 0 ? "true" : "false"}
+                      aria-label={`第 ${i + 1} 款：${item.name}`}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+
+            <p class="carousel-hint carousel-hint--mobile lg:hidden">
+              👆 手指左右滑動瀏覽 · 共 {menuItems.length} 款推薦
+            </p>
+            <p class="carousel-hint carousel-hint--desktop hidden lg:block">
+              電腦版一次顯示三杯完整介紹 · 點箭頭或圓點切換 · 共 {menuItems.length} 款
+            </p>
           </div>
 
           <p class="mt-8 text-left text-sm text-gray-500">
-            💡 不用線上付款。現場點、現場結，<strong class="text-gray-700">LINE Pay</strong>、<strong class="text-gray-700">街口支付</strong> 掃一下就好。
+            💡 到店現場點飲、現場結帳。支援 <strong class="text-gray-700">LINE Pay</strong>、<strong class="text-gray-700">街口支付</strong>，無線上下單。
           </p>
         </div>
       </section>
@@ -626,15 +694,22 @@ const jsonLd = {
             來旗津，別空著手走——這杯<strong class="text-mango-100">旗津必吃</strong>果汁等你
           </h2>
           <p class="reveal mx-auto mt-3 max-w-xl text-white/90" style="--reveal-delay:0.1s">
-            走旗津一日遊會經過，但你可能不知道。內行喝了20年，你這次路過別再錯過——手機先選口味，現場出示畫面，馬上現打、馬上走。LINE Pay、街口都可以。
+            走旗津一日遊會經過，但攻略上多半看不到我們。內行喝了20餘年，你這次路過別再錯過——進店現場點一杯，即打即喝。結帳支援 LINE Pay、街口。
           </p>
-          <a
-            href="#menu"
-            class="btn-glow reveal mt-6 inline-flex rounded-full bg-white px-8 py-3.5 text-sm font-bold text-mango-600 shadow-xl hover:bg-mango-50"
-            style="--reveal-delay:0.2s"
-          >
-            先去選口味 →
-          </a>
+          <div class="reveal mt-6 flex flex-wrap justify-center gap-3" style="--reveal-delay:0.2s">
+            <a
+              href="#about"
+              class="btn-glow inline-flex rounded-full bg-white px-8 py-3.5 text-sm font-bold text-mango-600 shadow-xl hover:bg-mango-50"
+            >
+              店怎麼走 →
+            </a>
+            <a
+              href="#menu"
+              class="inline-flex rounded-full border-2 border-white/80 px-8 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
+            >
+              看推薦飲品
+            </a>
+          </div>
         </div>
       </section>
     </main>
@@ -645,7 +720,10 @@ const jsonLd = {
         <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div class="text-center sm:text-left">
             <p class="text-lg font-extrabold text-mango-600">旗津必吃 | 在地鮮果汁冰沙吧</p>
-            <p class="mt-1 text-sm text-gray-500">高雄市旗津區中洲三路641 · 距離渡輪站步行約3分鐘</p>
+            <p class="mt-1 text-sm text-gray-500">
+              高雄市旗津區中洲三路641<br />
+              渡輪站步行約 6 分鐘 · 海洋科技大學斜對面走路約 1 分鐘
+            </p>
           </div>
           <nav aria-label="頁尾導覽">
             <ul class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
@@ -662,102 +740,83 @@ const jsonLd = {
       </div>
     </footer>
 
-    <!-- ========== Order Modal ========== -->
-    <div
-      id="order-modal"
-      class="fixed inset-0 z-50 hidden items-center justify-center p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <div
-        id="modal-backdrop"
-        class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm"
-        aria-hidden="true"
-      ></div>
-
-      <div class="relative w-full max-w-md scale-95 rounded-2xl bg-white p-6 shadow-2xl opacity-0 transition-all duration-200 sm:p-8" id="modal-panel">
-        <button
-          type="button"
-          id="modal-close"
-          class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
-          aria-label="關閉"
-        >
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        <div class="text-center">
-          <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-mint-50 text-3xl">
-            ✅
-          </span>
-          <h3 id="modal-title" class="mt-4 text-xl font-extrabold text-gray-900">
-            加到你的外帶清單了！
-          </h3>
-          <p class="mt-3 leading-relaxed text-gray-600">
-            亮這個畫面給夥伴看，馬上幫你現打現做。
-            結帳支援 <strong class="text-gray-800">LINE Pay</strong>、
-            <strong class="text-gray-800">街口</strong>，不用等、不用排。
-          </p>
-          <p id="modal-item-name" class="mt-4 rounded-xl bg-mango-50 px-4 py-3 text-sm font-bold text-mango-600"></p>
-          <button
-            type="button"
-            id="modal-confirm"
-            class="mt-6 w-full rounded-xl bg-mango-500 py-3 text-sm font-bold text-white transition hover:bg-mango-600"
-          >
-            好，繼續加
-          </button>
-        </div>
-      </div>
-    </div>
-
     <script>
-      const modal = document.getElementById("order-modal");
-      const modalPanel = document.getElementById("modal-panel");
-      const modalBackdrop = document.getElementById("modal-backdrop");
-      const modalClose = document.getElementById("modal-close");
-      const modalConfirm = document.getElementById("modal-confirm");
-      const modalItemName = document.getElementById("modal-item-name");
+      // Menu carousel (mobile: 1 slide · desktop: 3 columns)
+      const menuTrack = document.getElementById("menu-carousel-track");
+      const menuViewport = document.getElementById("menu-carousel-viewport");
+      const menuSlides = menuTrack?.querySelectorAll<HTMLElement>(".menu-carousel-slide");
+      const menuDots = document.querySelectorAll<HTMLButtonElement>(".carousel-dot");
+      let menuSlideIndex = 0;
 
-      function openModal(itemName: string) {
-        if (!modal || !modalPanel || !modalItemName) return;
-        modalItemName.textContent = `✦ ${itemName}`;
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-        requestAnimationFrame(() => {
-          modalPanel.classList.remove("scale-95", "opacity-0");
-          modalPanel.classList.add("scale-100", "opacity-100");
-          modalPanel.style.transition = "opacity 0.35s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)";
-        });
-        document.body.style.overflow = "hidden";
+      const desktopCarouselMq = window.matchMedia("(min-width: 1024px)");
+
+      function getSlidesPerView() {
+        return desktopCarouselMq.matches ? 3 : 1;
       }
 
-      function closeModal() {
-        if (!modal || !modalPanel) return;
-        modalPanel.classList.remove("scale-100", "opacity-100");
-        modalPanel.classList.add("scale-95", "opacity-0");
-        setTimeout(() => {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-          document.body.style.overflow = "";
-        }, 200);
+      function updateActiveDots() {
+        menuDots.forEach((dot, i) => {
+          const active = i === menuSlideIndex;
+          dot.classList.toggle("is-active", active);
+          dot.setAttribute("aria-selected", active ? "true" : "false");
+        });
       }
 
-      document.querySelectorAll("[data-add-item]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const name = btn.getAttribute("data-item-name") ?? "";
-          openModal(name);
+      function goToMenuSlide(index: number) {
+        if (!menuSlides?.length || !menuTrack) return;
+        const maxIndex = menuSlides.length - 1;
+        const perView = getSlidesPerView();
+        const maxStart = Math.max(0, maxIndex - perView + 1);
+        menuSlideIndex = Math.max(0, Math.min(index, maxStart));
+
+        const target = menuSlides[menuSlideIndex];
+        const inline = desktopCarouselMq.matches ? "start" : "center";
+
+        target?.scrollIntoView({
+          behavior: "smooth",
+          inline,
+          block: "nearest",
         });
+        updateActiveDots();
+      }
+
+      function stepMenuCarousel(direction: number) {
+        goToMenuSlide(menuSlideIndex + direction * getSlidesPerView());
+      }
+
+      document.getElementById("menu-carousel-prev")?.addEventListener("click", () => {
+        stepMenuCarousel(-1);
+      });
+      document.getElementById("menu-carousel-next")?.addEventListener("click", () => {
+        stepMenuCarousel(1);
+      });
+      menuDots.forEach((dot, i) => {
+        dot.addEventListener("click", () => goToMenuSlide(i));
       });
 
-      modalClose?.addEventListener("click", closeModal);
-      modalConfirm?.addEventListener("click", closeModal);
-      modalBackdrop?.addEventListener("click", closeModal);
+      desktopCarouselMq.addEventListener("change", () => goToMenuSlide(menuSlideIndex));
 
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeModal();
-      });
+      if (menuTrack && menuSlides?.length && "IntersectionObserver" in window) {
+        const slideObserver = new IntersectionObserver(
+          (entries) => {
+            let bestIdx = menuSlideIndex;
+            let bestRatio = 0;
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+                bestRatio = entry.intersectionRatio;
+                const idx = Number((entry.target as HTMLElement).dataset.slideIndex);
+                if (!Number.isNaN(idx)) bestIdx = idx;
+              }
+            });
+            if (bestRatio > 0.4 && bestIdx !== menuSlideIndex) {
+              menuSlideIndex = bestIdx;
+              updateActiveDots();
+            }
+          },
+          { root: menuViewport ?? menuTrack, threshold: [0.4, 0.55, 0.7] }
+        );
+        menuSlides.forEach((slide) => slideObserver.observe(slide));
+      }
 
       // Scroll progress bar
       const scrollProgress = document.getElementById("scroll-progress");
