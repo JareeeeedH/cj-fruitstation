@@ -5,78 +5,139 @@ const imgHero = "/juice-1.png";
 const imgStorefront = "/homePhoto-3.jpg";
 const imgMenuProduct = "/juice-2.png";
 
-const siteTitle = "旗津必吃 | 在地鮮果汁冰沙吧 — 高雄現打果汁老店";
+const brandName = "旗津蔬果茶飲";
+const brandTagline = "現點現打 · 二十年在旗津";
+const brandSlogan = "卡你牙的不只是剛剛的食物，也會是果肉。";
+
+const siteUrl = Astro.site?.href ?? Astro.url.origin;
+const ogImage = new URL(imgStorefront, siteUrl).href;
+
+const siteTitle = `旗津必吃、旗津隱藏版美食｜旗津果汁 — ${brandName}`;
 const siteDescription =
-  "旗津必吃鮮果汁冰沙吧，在地經營20餘年、用料實在。當地居民、造船廠藍領、海洋科技大學學生每日固定的營養補給站。走旗津一日遊會經過，但攻略很少寫——中洲三路641，渡輪站步行約6分鐘。";
+  `${brandName}：旗津必吃、旗津隱藏版美食名單裡常被忽略的現打果汁老店，旗津果汁現場點、現做。在地20餘年，中洲三路641，渡輪站步行約6分鐘、海科大斜對面約1分鐘。平日10:00–19:00；週末營業至下午（可能更早），來電 0987-553-799 確認。`;
+
+const seoKeywords =
+  "旗津必吃,旗津隱藏版美食,旗津果汁,旗津美食,旗津一日遊推薦,高雄現打果汁,旗津冰沙,旗津現打果汁,中洲三路,旗津渡輪站,海洋科技大學,木瓜牛奶,芒果冰沙";
+
+const storePhone = "0987-553-799";
+const storePhoneHref = "tel:+886987553799";
+
+const businessHours = {
+  weekday: "週一至週五 10:00－19:00",
+  weekend: "週六、週日 10:00－16:00（亦可能更早）",
+  note:
+    "週末僅營業至下午，亦有可能更早打烊——週末沒有上班族與學生，闆娘要早點休息。建議前來的旅客可先來電確認。",
+  phone: storePhone,
+  phoneHref: storePhoneHref,
+};
+
+const heroPoints = [
+  { mark: "📍", text: "在地經營、用料實在。" },
+  { mark: "👤", text: "當地居民與學生，每天來這補一杯。" },
+  { mark: "✓", text: "中洲三路641，渡輪站步行約 6 分鐘、海科大斜對面。" },
+];
+
+const ownerStories = [
+  {
+    title: "闆娘日常：跟果農較真",
+    text: "雨季或耕作不好，水果品質差，果農還說「幫忙銷貨，打果汁沒關係吧」。闆娘當場嗆：「你賣這什麼垃圾給我啊！」——為此沒少跟果農吵架。",
+  },
+  {
+    title: "闆娘堅持：塑化劑風波",
+    text: "想起塑化劑風波那段日子，大家不敢喝飲料，瞬間湧入大批想喝果汁的客人。闆娘堅持現點現打、真水果不打折——二十年走下來，就希望大家喝得安心，也喝得健康。",
+  },
+];
 
 const menuItems = [
   {
-    name: "高機能石蓮花奇異果",
+    name: "石蓮花奇異果",
     nameEn: "Cactus Pear & Kiwi",
+    image: "/menu-cactus-kiwi.png",
     price: 85,
     tag: "招牌推薦",
     tagColor: "bg-mango-500",
-    intro: "石蓮花配黃金奇異果，清爽高機能，走累曬後最該補的一杯。",
+    intro: "富含維他命C，酸酸甜甜清涼順口，退火消暑走累首選。",
+    taste: { sour: 58, sweet: 42 },
   },
   {
-    name: "抗氧化蔓越莓",
+    name: "蔓越莓汁",
     nameEn: "Antioxidant Cranberry",
+    image: "/menu-cranberry.png",
     price: 80,
     tag: "老店研發",
     tagColor: "bg-mint-500",
-    intro: "蔓越莓現榨酸甜，抗氧化系飲品，內行女生常來的秘密杯。",
+    intro: "現榨酸甜，抗氧化系飲品，內行女生常來的秘密杯。",
+    taste: { sour: 72, sweet: 28 },
   },
   {
-    name: "愛文芒果冰沙",
-    nameEn: "Irwin Mango Smoothie",
+    name: "芒果冰沙",
+    nameEn: "Mango Smoothie",
+    image: "/menu-mango-smoothie.png",
     price: 75,
     tag: "20年經典",
     tagColor: "bg-mango-400",
-    intro: "愛文芒果現打冰沙，濃郁不膩，旗津老街走完最對味。",
+    intro: "濃郁香甜沁涼順口，不膩解熱，老街逛完最想來一杯。",
+    taste: { sour: 18, sweet: 82 },
   },
   {
     name: "紅龍果牛奶",
     nameEn: "Dragon Fruit Milk",
+    image: "/menu-dragon-fruit-milk.png",
     price: 70,
     tag: "在地最愛",
     tagColor: "bg-mint-600",
-    intro: "紅龍果撞鮮奶，粉嫩順口，居民跟學生午後固定點。",
+    intro: "甜菜紅素抗氧化，粉嫩順口綿密，午後補元氣好選擇。",
+    taste: { sour: 22, sweet: 78 },
   },
   {
     name: "綜合蔬果汁",
     nameEn: "Mixed Veggie Juice",
+    image: "/menu-mixed-veggie.png",
     price: 65,
     tag: "健康首選",
     tagColor: "bg-mint-400",
-    intro: "當季蔬菜現榨，清甜不生澀，想顧健康的人內行都喝。",
+    intro: "當季現榨高膳食纖維，清甜不生澀，顧健康內行都愛點。",
+    taste: { sour: 45, sweet: 55 },
   },
   {
     name: "經典木瓜牛奶",
     nameEn: "Classic Papaya Milk",
+    image: "/menu-papaya-milk.png",
     price: 65,
     tag: "20年經典",
     tagColor: "bg-mango-500",
-    intro: "土木瓜現打配鮮奶，濃稠順口不死甜，老客人喝了二十年。",
+    intro: "濃稠順口不死甜，天然酵素助消化，老客二十年不離手。",
+    taste: { sour: 12, sweet: 88 },
   },
   {
-    name: "葡萄汁多多",
+    name: "葡萄多多",
     nameEn: "Grape Duoduo",
+    image: "/menu-grape-duoduo.png",
     price: 70,
     tag: "人氣必點",
     tagColor: "bg-mint-500",
-    intro: "葡萄現榨加多多，酸甜帶氣泡感，夏天旗津最想再來一杯。",
+    intro: "酸甜微氣泡感，沁涼解暑順口，夏天走熱最想再來杯。",
+    taste: { sour: 42, sweet: 58 },
   },
   {
     name: "綠豆沙牛奶",
     nameEn: "Mung Bean Milk",
+    image: "/menu-mung-bean-milk.png",
     price: 65,
     tag: "南部經典",
     tagColor: "bg-mango-400",
-    intro: "綠豆熬香撞鮮奶，消暑順口不膩，老客人說這杯最實在。",
+    intro: "綿密砂感消暑退火，順口不膩，南部老客說最實在的一杯。",
+    taste: { sour: 15, sweet: 85 },
   },
 ];
 
 const attractions = [
+  {
+    name: "旗津天后宮",
+    emoji: "🛕",
+    keywords: "旗津一日遊推薦 · 廟前老街",
+    desc: "拜完媽祖、逛廟前路老街，海鮮小吃一輪下來嘴巴又鹹又渴。<strong>旗津一日遊推薦</strong>動線多半會經過這帶，順路來杯現打果汁解膩，比便利商店瓶裝的實在。",
+  },
   {
     name: "高雄燈塔",
     emoji: "🗼",
@@ -86,20 +147,14 @@ const attractions = [
   {
     name: "旗津老街",
     emoji: "🏮",
-    keywords: "旗津美食 · 旗津必吃",
-    desc: "老街<strong>旗津美食</strong>吃一圈，嘴巴鹹了、走累了，來杯現打果汁剛好。觀光動線會經過，但攻略很少寫——旗津當地居民天天買，<strong>在地內行才知道</strong>的<strong>旗津必吃</strong>。",
+    keywords: "旗津美食 · 旗津蔬果茶飲",
+    desc: `老街<strong>旗津美食</strong>、<strong>旗津小吃</strong>吃一圈，吃飽後很適合來杯現打果汁解膩。嘴巴鹹了、走累了也剛好——觀光動線會經過，但攻略很少寫，<strong>在地內行才知道</strong>的<strong>${brandName}</strong>。`,
   },
   {
     name: "彩虹教堂",
     emoji: "⛪",
     keywords: "旗津一日遊推薦 · 打卡後歇腳",
     desc: "彩虹教堂拍完照，太陽正猛。這段<strong>旗津一日遊推薦</strong>動線你會走過，但不一定會注意到我們——買杯芒果冰沙邊走邊喝，比便利商店瓶裝的實在。",
-  },
-  {
-    name: "星空隧道",
-    emoji: "✨",
-    keywords: "旗津必吃 · 海濱散步",
-    desc: "穿越隧道吹完全身海風，這時候一杯現榨果汁最對味。走觀光路線會經過，但你可能就這樣走過去了——造船廠藍領、海洋科技大學學生的內行才會停。",
   },
   {
     name: "風車公園",
@@ -117,39 +172,41 @@ const attractions = [
 
 const articles = [
   {
-    title: "為什麼我們只用全熟水果？",
-    titleEn: "Why we only use fully ripened fruits",
-    date: "2025-03-15",
-    readTime: "3 分鐘",
+    title: "高雄「鳳荔季」開跑　行銷在地農特產",
+    source: "中央社 CNA",
+    date: "2026-05-30",
     excerpt:
-      "水果沒熟就打，味道淡、還得加糖遮。我們寧可少賣幾杯，也要等它熟透了才進店。你喝到的就是水果本身，不多騙一口。",
-    category: "老闆這樣說",
+      "2026 高雄鳳荔季於大樹區農會姑山倉庫登場，推廣玉荷包荔枝、金鑽鳳梨；市府指大樹有「玉荷包故鄉」美名，金鑽鳳梨產期僅約 2 至 3 週，把握當季選購。",
+    url: "https://www.cna.com.tw/news/aloc/202605300111.aspx",
+    category: "高雄農業",
   },
   {
-    title: "旗津夏天怎麼解渴才實在？",
-    titleEn: "Beat the heat: why fresh juice beats bottled drinks",
-    date: "2025-04-02",
-    readTime: "4 分鐘",
+    title: "5月起月月有水果　高雄夏祭新鮮市開跑",
+    source: "自由時報",
+    date: "2026-05-27",
     excerpt:
-      "便利商店冰櫃一排排，但造船廠幹活的、海洋科技大學晚課後的，最知道現打果汁才解得了渴。維生素C、鉀，現場現做才留得住——旗津人的營養補充，不必花大錢。",
-    category: "解渴指南",
+      "2026 高雄夏祭新鮮市 5 月至 9 月串聯鳳荔、金煌芒果、龍眼蜂蜜、香蕉等活動；並宣布學校營養午餐將採用高雄在地水果，縮短碳足跡、推動食農教育。",
+    url: "https://news.ltn.com.tw/news/life/breakingnews/5451091",
+    category: "產季活動",
   },
   {
-    title: "20年旗津老店，挑水果就這幾條",
-    titleEn: "Two decades of fruit selection wisdom",
-    date: "2025-05-10",
-    readTime: "5 分鐘",
+    title: "高溫少雨催熟　玉荷包荔枝提早上市",
+    source: "自由時報",
+    date: "2026-05-21",
     excerpt:
-      "天亮去市場，摸熟度、看當季。20餘年下來就一套：好果才打、你點了才做。走旗津一日遊路線會經過，但攻略很少寫——當地居民、造船廠藍領、海洋科技大學學生，內行都懂這間。",
-    category: "品牌故事",
+      "大樹玉荷包因高溫少雨提早進入盛產，產季可能較往年提早結束；高雄玉荷包種植面積與產量全國第一，5 月 30、31 日鳳荔季活動於姑山倉庫登場。",
+    url: "https://news.ltn.com.tw/news/life/breakingnews/5445032",
+    category: "產季報導",
   },
 ];
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "JuiceBar",
-  name: "旗津必吃 | 在地鮮果汁冰沙吧",
+  name: brandName,
+  alternateName: ["旗津必吃", "旗津隱藏版美食", "旗津果汁"],
   description: siteDescription,
+  image: ogImage,
   address: {
     "@type": "PostalAddress",
     streetAddress: "中洲三路641",
@@ -166,15 +223,23 @@ const jsonLd = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "09:00",
-      closes: "20:00",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "10:00",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday", "Sunday"],
+      opens: "10:00",
+      closes: "16:00",
     },
   ],
+  telephone: "+886987553799",
   priceRange: "$$",
   servesCuisine: "Fresh Juice, Smoothie",
-  url: Astro.url.origin,
+  url: siteUrl,
 };
+
 ---
 
 <!doctype html>
@@ -186,12 +251,9 @@ const jsonLd = {
 
     <title>{siteTitle}</title>
     <meta name="description" content={siteDescription} />
-    <meta
-      name="keywords"
-      content="旗津必吃,旗津美食,旗津一日遊推薦,高雄現打果汁,旗津果汁,旗津冰沙,高雄旗津,中洲三路,旗津渡輪站,現打果汁,木瓜牛奶,芒果冰沙"
-    />
+    <meta name="keywords" content={seoKeywords} />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, siteUrl).href} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -199,12 +261,15 @@ const jsonLd = {
     <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={siteDescription} />
     <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:site_name" content="旗津必吃 | 在地鮮果汁冰沙吧" />
+    <meta property="og:site_name" content={brandName} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={`${brandName} — 旗津必吃現打果汁`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={siteTitle} />
     <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={ogImage} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -218,25 +283,23 @@ const jsonLd = {
   </head>
 
   <body class="overflow-x-hidden text-gray-800 antialiased">
-    <div id="scroll-progress" aria-hidden="true"></div>
-
     <!-- ========== Header / Nav ========== -->
     <header class="glass-nav sticky top-0 z-40">
       <nav
         class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6"
         aria-label="主要導覽"
       >
-        <a href="#" class="group flex items-center gap-2">
+        <a href="/" class="group flex items-center gap-2">
           <span
             class="logo-glow flex h-9 w-9 items-center justify-center rounded-xl text-lg text-white"
             aria-hidden="true"
           >🍊</span>
           <div class="leading-tight">
             <span class="block text-sm font-extrabold text-mango-600 sm:text-base">
-              旗津必吃
+              {brandName}
             </span>
             <span class="block text-[10px] font-medium text-gray-500 sm:text-xs">
-              在地鮮果汁冰沙吧
+              {brandTagline}
             </span>
           </div>
         </a>
@@ -244,15 +307,21 @@ const jsonLd = {
         <ul class="hidden items-center gap-1 md:flex">
           <li>
             <a
-              href="#about"
-              class="nav-link-modern rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:text-mango-600"
-            >關於我們</a>
-          </li>
-          <li>
-            <a
               href="#menu"
               class="nav-link-modern rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:text-mango-600"
             >果汁好物</a>
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="nav-link-modern rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:text-mango-600"
+            >關於蔬果茶飲</a>
+          </li>
+          <li>
+            <a
+              href="#location"
+              class="nav-link-modern rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:text-mango-600"
+            >店面位置</a>
           </li>
           <li>
             <a
@@ -279,8 +348,9 @@ const jsonLd = {
       <!-- Mobile nav -->
       <div class="border-t border-gray-100 md:hidden">
         <ul class="flex overflow-x-auto px-4 py-2 text-xs font-medium whitespace-nowrap">
-          <li><a href="#about" class="mr-4 text-gray-600">關於我們</a></li>
           <li><a href="#menu" class="mr-4 text-gray-600">果汁好物</a></li>
+          <li><a href="#about" class="mr-4 text-gray-600">關於蔬果茶飲</a></li>
+          <li><a href="#location" class="mr-4 text-gray-600">店面位置</a></li>
           <li><a href="#guide" class="mr-4 text-gray-600">觀光導覽</a></li>
           <li><a href="#reading" class="text-gray-600">水果讀物</a></li>
         </ul>
@@ -305,22 +375,28 @@ const jsonLd = {
           <span class="bubble bubble--mango" style="--dur:9s;--delay:2.5s;--opacity:0.38;width:64px;height:64px;top:8%;left:48%;"></span>
         </div>
 
-        <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
-          <div class="grid items-center gap-10 lg:grid-cols-2">
-            <div class="reveal-left">
+        <div class="hero-inner relative mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="grid items-center gap-8 lg:grid-cols-2">
+            <div>
               <span
                 class="tech-pill mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-mint-600"
               >
                 🌴 在地經營20餘年 · 內行人的營養補充站
               </span>
               <h1 class="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-                <strong class="bg-gradient-to-r from-mango-600 to-mango-500 bg-clip-text text-transparent">旗津必吃</strong><br />
-                <span class="gradient-heading">現打鮮果汁冰沙吧</span>
+                <strong class="bg-gradient-to-r from-mango-600 to-mango-500 bg-clip-text text-transparent">{brandName}</strong><br />
+                <span class="gradient-heading">{brandTagline}</span>
               </h1>
-              <p class="mt-4 max-w-lg text-base leading-relaxed text-gray-600 sm:text-lg">
-                在地經營、用料實在。當地居民、造船廠藍領、海洋科技大學學生，每天來這補一杯——觀光客多半不知道。
-                走<strong>旗津一日遊</strong>路線其實會經過，但攻略很少寫；路過別就這樣走過去了。
-              </p>
+              <ul class="hero-points max-w-lg" aria-label="店家特色">
+                {
+                  heroPoints.map((point) => (
+                    <li class="hero-points__item">
+                      <span class="hero-points__mark" aria-hidden="true">{point.mark}</span>
+                      <span class="hero-points__text">{point.text}</span>
+                    </li>
+                  ))
+                }
+              </ul>
               <div class="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#menu"
@@ -332,7 +408,7 @@ const jsonLd = {
                   </svg>
                 </a>
                 <a
-                  href="#about"
+                  href="#location"
                   class="inline-flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-6 py-3 text-sm font-bold text-gray-700 transition hover:border-mint-400 hover:text-mint-600"
                 >
                   店怎麼走
@@ -340,11 +416,11 @@ const jsonLd = {
               </div>
             </div>
 
-            <div class="reveal-right">
+            <div>
               <div class="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-mango-500/10 ring-1 ring-black/5">
                 <img
                   src={imgHero}
-                  alt="旗津必吃現打鮮果汁"
+                  alt={`${brandName}現打鮮果汁`}
                   class="h-full w-full object-cover"
                   width={800}
                   height={600}
@@ -354,150 +430,27 @@ const jsonLd = {
               </div>
             </div>
           </div>
-
-          <a href="#about" class="scroll-hint mt-12 flex flex-col items-center gap-1 text-gray-400 no-underline" aria-label="往下滑動">
-            <span class="text-[10px] font-medium tracking-widest uppercase">Scroll</span>
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
         </div>
       </section>
 
-      <!-- ========== 1. About Us ========== -->
-      <section id="about" class="section-bg section-bg-about scroll-mt-20 py-16 sm:py-24">
+      <!-- ========== 果汁好物（banner 下方） ========== -->
+      <section id="menu" class="section-bg section-bg-menu scroll-mt-20 section-after-hero">
         <div class="tech-grid-layer" aria-hidden="true"></div>
         <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
-          <div class="reveal mb-12 text-left">
-            <span class="section-badge tech-badge">About Us</span>
-            <h2 class="section-title-tech mt-4">關於我們</h2>
-            <div class="section-accent-line"></div>
-            <p class="mt-4 max-w-2xl text-gray-600">
-              在地經營20餘年，用料實在。當地居民、造船廠藍領、海洋科技大學學生，每天固定的營養補給站——觀光客多半不知道，但走旗津一日遊其實會經過。
-            </p>
-          </div>
-
-          <div class="grid items-start gap-10 lg:grid-cols-2">
-            <div class="reveal-left space-y-6" style="--reveal-delay:0.1s">
-              <div class="glass-card rounded-3xl p-6 sm:p-8">
-                <h3 class="text-xl font-bold text-gray-900">在地20餘年，規矩沒變過</h3>
-                <p class="mt-3 leading-relaxed text-gray-600">
-                  從開業到現在，就一套：好水果要熟、你點了才打、不多加糖騙人。
-                  杯杯現做，喝到的就是水果本身，不是調味料調出來的。
-                </p>
-                <p class="mt-3 leading-relaxed text-gray-600">
-                  除了經典產地鮮果，還有老店自己研發的頂級蔬果吧——品項多到你可能選擇困難，但內行都知道來這裡就對了。
-                </p>
-                <p class="mt-3 leading-relaxed text-gray-600">
-                  中洲三路641，渡輪站步行約6分鐘、海洋科技大學斜對面走路約1分鐘。<strong>旗津一日遊</strong>攻略很少寫我們，但路線幾乎都會經過——當地居民、造船廠藍領、海洋科技大學學生，每天固定的營養補給站。
-                </p>
-                <ul class="mt-6 space-y-3">
-                  <li class="flex items-start gap-3">
-                    <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-50 text-mint-500 text-xs">✓</span>
-                    <span class="text-sm text-gray-700">天亮去市場挑當季水果，熟透了才進店</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-50 text-mint-500 text-xs">✓</span>
-                    <span class="text-sm text-gray-700">你點了才打，真材實料、不添加人工色素</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-50 text-mint-500 text-xs">✓</span>
-                    <span class="text-sm text-gray-700">到現場點、即打即出杯，杯杯現做不趕工</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-50 text-mint-500 text-xs">✓</span>
-                    <span class="text-sm text-gray-700">LINE Pay、街口支付，結帳也快</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="reveal-right space-y-4" style="--reveal-delay:0.2s">
-              <div class="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-mint-500/10 ring-1 ring-black/5">
-                <img
-                  src={imgStorefront}
-                  alt="旗津必吃店面外觀 · 高雄市旗津區中洲三路641"
-                  class="h-full w-full object-cover"
-                  width={800}
-                  height={600}
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- Google Map placeholder -->
-          <div class="reveal mt-12" style="--reveal-delay:0.15s">
-            <h3 class="mb-2 text-left text-lg font-bold text-gray-900">
-              📍 店面位置
-            </h3>
-            <div class="section-accent-line mb-4"></div>
-            <div class="location-info mb-4">
-              <p class="location-info__address">
-                <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>高雄市旗津區中洲三路641</span>
-              </p>
-              <ul class="location-info__refs list-none p-0">
-                <li class="location-info__ref">
-                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>距離旗津渡輪站步行約 6 分鐘</span>
-                </li>
-                <li class="location-info__ref">
-                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>海洋科技大學斜對面，走路約 1 分鐘</span>
-                </li>
-              </ul>
-            </div>
-            <div
-              id="map-placeholder"
-              class="relative h-72 overflow-hidden rounded-3xl border border-gray-200/80 shadow-lg shadow-gray-200/50 sm:h-96"
-              aria-label="旗津必吃店面地圖"
-            >
-              <iframe
-                src="https://maps.google.com/maps?q=%E9%AB%98%E9%9B%84%E5%B8%82%E6%97%97%E6%B4%A5%E5%8D%80%E4%B8%AD%E5%B7%9E%E4%B8%89%E8%B7%AF641&hl=zh-TW&z=17&output=embed"
-                class="absolute inset-0 h-full w-full border-0"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="旗津必吃 | 中洲三路641 店面位置"
-              ></iframe>
-            </div>
-            <p class="mt-3 text-left text-xs text-gray-400">
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E9%9B%84%E5%B8%82%E6%97%97%E6%B4%A5%E5%8D%80%E4%B8%AD%E5%B7%9E%E4%B8%89%E8%B7%AF641"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-medium text-mango-600 hover:text-mango-700"
-              >
-                在 Google 地圖開啟導航 →
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== 2. Fresh Menu ========== -->
-      <section id="menu" class="section-bg section-bg-menu scroll-mt-20 py-16 sm:py-24">
-        <div class="tech-grid-layer" aria-hidden="true"></div>
-        <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
-          <div class="reveal mb-12 text-left">
+          <div class="mb-6 text-left">
             <span class="section-badge tech-badge">Fresh Menu</span>
-            <h2 class="section-title-tech mt-4">果汁好物</h2>
+            <h2 class="section-title-tech mt-3">果汁好物</h2>
             <div class="section-accent-line"></div>
-            <p class="mt-4 max-w-2xl text-gray-600">
-              推薦款先從這八杯認識起。手機左右滑、電腦一次看三杯，都是現場點、現打現做——這裡只介紹口味，不線上下單。
-            </p>
+            <div class="menu-intro mt-3 max-w-2xl">
+              <p>推薦從這八杯認識起，現場點、現打現做。</p>
+              <p>
+                濃郁的口感、在嘴裡飄著的果香——喝一口，你就知道。
+                <span class="menu-intro__punch">幸福？有時候就這麼簡單。</span>
+              </p>
+            </div>
           </div>
 
-          <div class="menu-carousel-wrap reveal" style="--reveal-delay:0.05s" id="menu-carousel-wrap">
+          <div class="menu-carousel-wrap" id="menu-carousel-wrap">
             <div class="menu-carousel-viewport" id="menu-carousel-viewport">
               <div class="menu-carousel-track" id="menu-carousel-track">
                 {
@@ -508,12 +461,13 @@ const jsonLd = {
                     >
                       <div class="menu-slide-image relative aspect-[4/3] overflow-hidden border-b border-gray-100/80 sm:aspect-[5/4]">
                         <img
-                          src={imgMenuProduct}
-                          alt={`${item.name} — 旗津必吃現打果汁`}
-                          class="h-full w-full object-cover"
+                          src={item.image ?? imgMenuProduct}
+                          alt={`${item.name} — ${brandName}現打果汁`}
+                          class="menu-slide-image__photo h-full w-full object-cover"
                           width={640}
                           height={480}
                           loading="lazy"
+                          draggable="false"
                         />
                         <span class={`absolute top-3 left-3 z-10 rounded-full px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm ${item.tagColor}`}>
                           {item.tag}
@@ -524,17 +478,33 @@ const jsonLd = {
                       </div>
 
                       <div class="menu-slide-body p-5 sm:p-6">
-                        <div class="flex items-start justify-between gap-3">
-                          <h3 class="menu-slide-title text-xl font-bold leading-snug text-gray-900 sm:text-lg lg:text-base">{item.name}</h3>
-                          <span class="price-tag-tech shrink-0 text-xl font-extrabold text-mango-600 sm:text-lg">
-                            NT${item.price}
-                          </span>
-                        </div>
+                        <h3 class="menu-slide-title text-xl font-bold leading-snug text-gray-900 sm:text-lg lg:text-base">{item.name}</h3>
                         <p class="mt-1 text-xs text-gray-400">{item.nameEn}</p>
+                        <div
+                          class="taste-dial mt-3"
+                          role="img"
+                          aria-label={`酸度 ${item.taste.sour}%，甜度 ${item.taste.sweet}%`}
+                        >
+                          <div class="taste-dial__row">
+                            <span class="taste-dial__label taste-dial__label--sour">
+                              酸 <strong>{item.taste.sour}%</strong>
+                            </span>
+                            <span class="taste-dial__label taste-dial__label--sweet">
+                              甜 <strong>{item.taste.sweet}%</strong>
+                            </span>
+                          </div>
+                          <div class="taste-dial__track">
+                            <span
+                              class="taste-dial__segment taste-dial__segment--sour"
+                              style={`width: ${item.taste.sour}%`}
+                            ></span>
+                            <span
+                              class="taste-dial__segment taste-dial__segment--sweet"
+                              style={`width: ${item.taste.sweet}%`}
+                            ></span>
+                          </div>
+                        </div>
                         <p class="menu-slide-intro mt-3 text-base leading-relaxed text-gray-600 sm:text-sm">{item.intro}</p>
-                        <p class="mt-5 rounded-xl border border-mango-100 bg-mango-50/60 px-4 py-3 text-center text-sm font-medium text-mango-700">
-                          來店現場點單 · 即打即做
-                        </p>
                       </div>
                     </article>
                   ))
@@ -585,162 +555,91 @@ const jsonLd = {
               </div>
             </div>
 
-            <p class="carousel-hint carousel-hint--mobile lg:hidden">
-              👆 手指左右滑動瀏覽 · 共 {menuItems.length} 款推薦
-            </p>
-            <p class="carousel-hint carousel-hint--desktop hidden lg:block">
-              電腦版一次顯示三杯完整介紹 · 點箭頭或圓點切換 · 共 {menuItems.length} 款
-            </p>
           </div>
-
-          <p class="mt-8 text-left text-sm text-gray-500">
-            💡 到店現場點飲、現場結帳。支援 <strong class="text-gray-700">LINE Pay</strong>、<strong class="text-gray-700">街口支付</strong>，無線上下單。
-          </p>
         </div>
       </section>
 
-      <!-- ========== 3. Qijin Travel Guide ========== -->
-      <section id="guide" class="section-bg section-bg-guide scroll-mt-20 py-16 sm:py-24">
+      <!-- ========== 關於蔬果茶飲 + 店面位置 ========== -->
+      <section id="about" class="section-bg section-bg-about section-intro scroll-mt-20">
         <div class="tech-grid-layer" aria-hidden="true"></div>
         <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
-          <div class="reveal mb-12 text-left">
-            <span class="section-badge tech-badge">Travel Guide</span>
-            <h2 class="section-title-tech mt-4">
-              旗津觀光導覽
-            </h2>
+          <div class="section-block-header text-left">
+            <span class="section-badge tech-badge">About Us</span>
+            <h2 class="section-title-tech mt-3">關於蔬果茶飲</h2>
             <div class="section-accent-line"></div>
-            <p class="mt-4 max-w-2xl text-gray-600">
-              走<strong>旗津一日遊推薦</strong>觀光路線，很多景點之間你其實會經過我們——但攻略沒寫、地圖沒標，你就這樣走過去了。走累了、走熱了，記得順路買杯<strong>旗津必吃</strong>現打果汁。
-            </p>
+            <div class="about-intro mt-3">
+              <p>
+                很多人找<strong>旗津必吃</strong>、<strong>旗津美食</strong>、<strong>旗津隱藏版美食</strong>，卻錯過這間做了 20 年的<strong>旗津果汁</strong>老店。
+              </p>
+              <p>
+                當地居民與學生每天來補一杯；走<strong>旗津一日遊</strong>動線，也常會經過這邊，記得來喝杯涼的~
+              </p>
+            </div>
           </div>
 
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {
-              attractions.map((spot, i) => (
-                <article
-                  class="modern-card reveal-scale overflow-hidden rounded-3xl"
-                  style={`--reveal-delay:${(i % 3) * 0.12}s`}
-                >
-                  {/* Attraction image placeholder */}
-                  <div class="relative flex aspect-[16/9] flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                    <span class="text-4xl" aria-hidden="true">{spot.emoji}</span>
-                    <svg class="absolute bottom-2 right-2 h-6 w-6 text-gray-400/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span class="mt-1 text-[10px] text-gray-400">{spot.name} 照片占位</span>
+          <div class="mt-5 grid items-start gap-5 lg:grid-cols-2 lg:gap-6">
+            <div class="space-y-4">
+              <div class="glass-card rounded-3xl p-6 sm:p-8">
+                <h3 class="text-xl font-bold text-gray-900">在地20餘年，規矩沒變過</h3>
+                <div class="glass-card-copy">
+                  <div class="glass-card-copy__rules">
+                    <p class="glass-card-copy__lead">從開業到現在，就一套：</p>
+                    <p>水果品質要最好、現點現打、不多加糖加水，杯杯現做，喝到的就是水果本身。</p>
                   </div>
+                  <p>除了經典產地鮮果，還有老店自己研發的頂級蔬果吧——品項多到你會選擇障礙，內行都知道來這裡就對了。</p>
+                </div>
 
-                  <div class="p-5">
-                    <span class="text-[10px] font-bold tracking-wide text-mint-600 uppercase">
-                      {spot.keywords}
-                    </span>
-                    <h3 class="mt-1 text-lg font-bold text-gray-900">{spot.name}</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600" set:html={spot.desc} />
+                <div class="owner-stories">
+                  <h4 class="owner-stories__heading">為什麼喝得安心</h4>
+                  <div class="owner-stories__grid">
+                    {
+                      ownerStories.map((story) => (
+                        <article class="owner-story">
+                          <h5 class="owner-story__title">{story.title}</h5>
+                          <p class="owner-story__text">{story.text}</p>
+                        </article>
+                      ))
+                    }
                   </div>
-                </article>
-              ))
-            }
-          </div>
-        </div>
-      </section>
+                </div>
+              </div>
+            </div>
 
-      <!-- ========== 4. Fruit Reading ========== -->
-      <section id="reading" class="section-bg section-bg-reading scroll-mt-20 py-16 sm:py-24">
-        <div class="tech-grid-layer" aria-hidden="true"></div>
-        <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
-          <div class="reveal mb-12 text-left">
-            <span class="section-badge tech-badge">Fruit Reading</span>
-            <h2 class="section-title-tech mt-4">水果讀物</h2>
-            <div class="section-accent-line"></div>
-            <p class="mt-4 max-w-2xl text-gray-600">
-              老闆跟夥伴這20年怎麼挑水果、旗津夏天怎麼解渴——短篇整理給你，想喝得更明白可以看看。
-            </p>
+            <div>
+              <div class="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-mint-500/10 ring-1 ring-black/5">
+                <img
+                  src={imgStorefront}
+                  alt={`${brandName}店面外觀 · 高雄市旗津區中洲三路641`}
+                  class="h-full w-full object-cover"
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
 
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {
-              articles.map((article, i) => (
-                <article
-                  class="modern-card reveal-scale flex flex-col overflow-hidden rounded-3xl"
-                  style={`--reveal-delay:${i * 0.12}s`}
-                >
-                  {/* Article cover placeholder */}
-                  <div class="relative flex aspect-[16/9] flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                    <svg class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    <span class="mt-1 text-[10px] text-gray-400">文章封面占位</span>
-                    <span class="absolute top-3 left-3 rounded-full bg-mint-500 px-2.5 py-0.5 text-[10px] font-bold text-white">
-                      {article.category}
-                    </span>
-                  </div>
-
-                  <div class="flex flex-1 flex-col p-5">
-                    <div class="mb-2 flex items-center gap-2 text-xs text-gray-400">
-                      <time datetime={article.date}>{article.date}</time>
-                      <span>·</span>
-                      <span>{article.readTime}閱讀</span>
-                    </div>
-                    <h3 class="text-base font-bold leading-snug text-gray-900 sm:text-lg">
-                      {article.title}
-                    </h3>
-                    <p class="mt-0.5 text-xs text-gray-400">{article.titleEn}</p>
-                    <p class="mt-3 flex-1 text-sm leading-relaxed text-gray-600">
-                      {article.excerpt}
-                    </p>
-                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-mango-600">
-                      閱讀更多
-                      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </div>
-                </article>
-              ))
-            }
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== CTA Banner ========== -->
-      <section class="cta-gradient relative overflow-hidden py-14 sm:py-16">
-        <div class="tech-scanline" aria-hidden="true"></div>
-        <div class="bubble-field absolute inset-0 opacity-30" aria-hidden="true">
-          <span class="bubble" style="--dur:10s;width:80px;height:80px;top:20%;left:10%;"></span>
-          <span class="bubble bubble--mint" style="--dur:8s;--delay:1s;width:50px;height:50px;top:60%;right:15%;"></span>
-        </div>
-        <div class="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
-          <h2 class="reveal text-2xl font-extrabold text-white sm:text-3xl">
-            來旗津，別空著手走——這杯<strong class="text-mango-100">旗津必吃</strong>果汁等你
-          </h2>
-          <p class="reveal mx-auto mt-3 max-w-xl text-white/90" style="--reveal-delay:0.1s">
-            走旗津一日遊會經過，但攻略上多半看不到我們。內行喝了20餘年，你這次路過別再錯過——進店現場點一杯，即打即喝。結帳支援 LINE Pay、街口。
-          </p>
-          <div class="reveal mt-6 flex flex-wrap justify-center gap-3" style="--reveal-delay:0.2s">
-            <a
-              href="#about"
-              class="btn-glow inline-flex rounded-full bg-white px-8 py-3.5 text-sm font-bold text-mango-600 shadow-xl hover:bg-mango-50"
-            >
-              店怎麼走 →
-            </a>
-            <a
-              href="#menu"
-              class="inline-flex rounded-full border-2 border-white/80 px-8 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
-            >
-              看推薦飲品
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- ========== Footer ========== -->
-    <footer class="section-bg section-bg-footer relative py-10">
-      <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <div class="text-center sm:text-left">
-            <p class="text-lg font-extrabold text-mango-600">旗津必吃 | 在地鮮果汁冰沙吧</p>
-            <div class="location-info location-info--footer mt-2">
+          <div id="location" class="about-location scroll-mt-20">
+            <div class="section-block-header section-heading-wrap text-left">
+              <span class="section-badge tech-badge">Location</span>
+              <h2 class="section-title-tech">店面位置</h2>
+              <div class="section-accent-line"></div>
+            </div>
+            <div class="store-hours mb-4">
+              <h3 class="store-hours__title">營業時間</h3>
+              <ul class="store-hours__list">
+                <li><span class="store-hours__label">平日</span>{businessHours.weekday}</li>
+                <li><span class="store-hours__label">週末</span>{businessHours.weekend}</li>
+              </ul>
+              <p class="store-hours__note">{businessHours.note}</p>
+              <p class="store-hours__phone">
+                預約／確認營業：
+                <a href={businessHours.phoneHref} class="store-hours__phone-link">
+                  {businessHours.phone}
+                </a>
+              </p>
+            </div>
+            <div class="location-info mb-3">
               <p class="location-info__address">
                 <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -765,23 +664,251 @@ const jsonLd = {
                 </li>
               </ul>
             </div>
+            <div
+              id="map-placeholder"
+              class="relative h-56 overflow-hidden rounded-2xl border border-gray-200/80 shadow-md shadow-gray-200/40 sm:h-72"
+              aria-label={`${brandName}店面地圖`}
+            >
+              <iframe
+                src="https://maps.google.com/maps?q=%E9%AB%98%E9%9B%84%E5%B8%82%E6%97%97%E6%B4%A5%E5%8D%80%E4%B8%AD%E5%B7%9E%E4%B8%89%E8%B7%AF641&hl=zh-TW&z=17&output=embed"
+                class="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title={`${brandName} | 中洲三路641 店面位置`}
+              ></iframe>
+            </div>
+            <p class="mt-2 text-left text-xs text-gray-400">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E9%9B%84%E5%B8%82%E6%97%97%E6%B4%A5%E5%8D%80%E4%B8%AD%E5%B7%9E%E4%B8%89%E8%B7%AF641"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-medium text-mango-600 hover:text-mango-700"
+              >
+                在 Google 地圖開啟導航 →
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 3. Qijin Travel Guide ========== -->
+      <section id="guide" class="section-bg section-bg-guide scroll-mt-20 section-compact">
+        <div class="tech-grid-layer" aria-hidden="true"></div>
+        <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="section-heading-wrap text-left">
+            <span class="section-badge tech-badge">Travel Guide</span>
+            <h2 class="section-title-tech">
+              旗津觀光導覽
+            </h2>
+            <div class="section-accent-line"></div>
+            <p class="max-w-2xl text-gray-600">
+              規劃<strong>旗津一日遊</strong>，可展開看景點；路上走累了，記得路過進來補一杯。
+            </p>
+          </div>
+
+          <details class="guide-accordion">
+            <summary class="guide-accordion__trigger">
+              <span class="guide-accordion__label">查看旗津一日遊景點</span>
+              <svg class="guide-accordion__chevron" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="guide-accordion__panel">
+              <div class="guide-accordion__panel-inner">
+                <div class="guide-bars">
+                  {
+                    attractions.map((spot) => (
+                      <article class="guide-bar">
+                        <span class="guide-bar__icon" aria-hidden="true">{spot.emoji}</span>
+                        <div class="guide-bar__meta">
+                          <h3 class="guide-bar__name">{spot.name}</h3>
+                          <span class="guide-bar__keywords">{spot.keywords}</span>
+                        </div>
+                        <p class="guide-bar__desc" set:html={spot.desc} />
+                      </article>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ========== 4. Fruit Reading ========== -->
+      <section id="reading" class="section-bg section-bg-reading scroll-mt-20 section-compact">
+        <div class="tech-grid-layer" aria-hidden="true"></div>
+        <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="section-heading-wrap text-left">
+            <span class="section-badge tech-badge">Fruit Reading</span>
+            <h2 class="section-title-tech">水果讀物</h2>
+            <div class="section-accent-line"></div>
+          </div>
+
+          <ol class="reading-bars">
+            {
+              articles.map((article) => (
+                <li class="reading-bar">
+                  <div class="reading-bar__meta">
+                    <span class="reading-bar__category">{article.category}</span>
+                    <time class="reading-bar__date" datetime={article.date}>
+                      {article.date.replace(/-/g, "/")}
+                    </time>
+                    <span class="reading-bar__source">{article.source}</span>
+                  </div>
+                  <div class="reading-bar__body">
+                    <h3 class="reading-bar__title">
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {article.title}
+                      </a>
+                    </h3>
+                    <p class="reading-bar__excerpt">{article.excerpt}</p>
+                  </div>
+                  <a
+                    class="reading-bar__link"
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`閱讀原文：${article.title}`}
+                  >
+                    <span aria-hidden="true">原文</span>
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <!-- ========== CTA Banner ========== -->
+      <section class="cta-gradient relative overflow-hidden py-10 sm:py-12">
+        <div class="tech-scanline" aria-hidden="true"></div>
+        <div class="bubble-field absolute inset-0 opacity-30" aria-hidden="true">
+          <span class="bubble" style="--dur:10s;width:80px;height:80px;top:20%;left:10%;"></span>
+          <span class="bubble bubble--mint" style="--dur:8s;--delay:1s;width:50px;height:50px;top:60%;right:15%;"></span>
+        </div>
+        <div class="relative mx-auto max-w-6xl px-4 text-left sm:px-6">
+          <h2 class="max-w-2xl text-2xl font-extrabold text-white sm:text-3xl">
+            來旗津，別空著手走——這杯<strong class="text-mango-100">{brandName}</strong>果汁等你
+          </h2>
+          <p class="mt-3 max-w-xl text-white/90">
+            吃完美味海鮮、<strong>旗津小吃</strong>後，很適合來杯現打果汁解膩——這次路過別再錯過，進店現場點、即打即喝。
+          </p>
+          <p class="cta-slogan mt-4 max-w-lg">{brandSlogan}</p>
+          <div class="mt-6 flex flex-wrap justify-start gap-3">
+            <a
+              href="#location"
+              class="btn-glow inline-flex rounded-full bg-white px-8 py-3.5 text-sm font-bold text-mango-600 shadow-xl hover:bg-mango-50"
+            >
+              店怎麼走 →
+            </a>
+            <a
+              href="#menu"
+              class="inline-flex rounded-full border-2 border-white/80 px-8 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
+            >
+              看推薦飲品
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== Footer ========== -->
+    <footer class="section-bg section-bg-footer relative py-10">
+      <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="flex flex-col items-start gap-6">
+          <div class="text-left">
+            <p class="text-lg font-extrabold text-mango-600">{brandName}</p>
+            <div class="location-info location-info--footer mt-2">
+              <p class="location-info__address">
+                <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>高雄市旗津區中洲三路641</span>
+              </p>
+              <ul class="location-info__refs list-none p-0">
+                <li class="location-info__ref">
+                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>距離旗津渡輪站步行約 6 分鐘</span>
+                </li>
+                <li class="location-info__ref">
+                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>海洋科技大學斜對面，走路約 1 分鐘</span>
+                </li>
+              </ul>
+              <p class="store-hours__footer mt-3 text-sm text-gray-500">
+                <span class="font-semibold text-gray-700">營業時間</span><br />
+                {businessHours.weekday}<br />
+                {businessHours.weekend}<br />
+                <span class="text-xs text-gray-400">{businessHours.note}</span><br />
+                <a href={businessHours.phoneHref} class="store-hours__phone-link mt-1 inline-block text-sm font-semibold text-mango-600 hover:text-mango-700">
+                  {businessHours.phone}
+                </a>
+              </p>
+            </div>
           </div>
           <nav aria-label="頁尾導覽">
-            <ul class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
-              <li><a href="#about" class="hover:text-mango-600">關於我們</a></li>
+            <ul class="flex flex-wrap justify-start gap-4 text-sm text-gray-500">
               <li><a href="#menu" class="hover:text-mango-600">果汁好物</a></li>
+              <li><a href="#about" class="hover:text-mango-600">關於蔬果茶飲</a></li>
               <li><a href="#guide" class="hover:text-mango-600">觀光導覽</a></li>
               <li><a href="#reading" class="hover:text-mango-600">水果讀物</a></li>
             </ul>
           </nav>
         </div>
-        <p class="mt-8 text-center text-xs text-gray-400">
-          © {new Date().getFullYear()} 旗津必吃 | 在地鮮果汁冰沙吧. All rights reserved.
+        <p class="mt-8 text-left text-xs text-gray-400">
+          © {new Date().getFullYear()} {brandName}. All rights reserved.
         </p>
       </div>
     </footer>
 
+    <button
+      type="button"
+      id="back-to-top"
+      class="back-to-top"
+      aria-label="回到頁面頂部"
+      title="回到頁面頂部"
+      hidden
+    >
+      <svg class="back-to-top__icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+
     <script>
+      // Back to top
+      const backToTop = document.getElementById("back-to-top");
+      const backToTopThreshold = 400;
+
+      function updateBackToTop() {
+        if (!backToTop) return;
+        const show = window.scrollY > backToTopThreshold;
+        backToTop.hidden = !show;
+        backToTop.classList.toggle("back-to-top--visible", show);
+      }
+
+      updateBackToTop();
+      window.addEventListener("scroll", updateBackToTop, { passive: true });
+
+      backToTop?.addEventListener("click", () => {
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+      });
+
       // Menu carousel (mobile: 1 slide · desktop: 3 columns)
       const menuTrack = document.getElementById("menu-carousel-track");
       const menuViewport = document.getElementById("menu-carousel-viewport");
@@ -801,6 +928,26 @@ const jsonLd = {
           dot.classList.toggle("is-active", active);
           dot.setAttribute("aria-selected", active ? "true" : "false");
         });
+      }
+
+      function syncMenuIndexFromScroll() {
+        if (!menuSlides?.length || !menuTrack) return;
+        const trackRect = menuTrack.getBoundingClientRect();
+        const trackAnchor = trackRect.left + trackRect.width * 0.2;
+        let closestIdx = menuSlideIndex;
+        let closestDist = Infinity;
+
+        menuSlides.forEach((slide, i) => {
+          const rect = slide.getBoundingClientRect();
+          const slideAnchor = rect.left;
+          const dist = Math.abs(slideAnchor - trackAnchor);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closestIdx = i;
+          }
+        });
+
+        menuSlideIndex = closestIdx;
       }
 
       function goToMenuSlide(index: number) {
@@ -859,44 +1006,61 @@ const jsonLd = {
         menuSlides.forEach((slide) => slideObserver.observe(slide));
       }
 
-      // Scroll progress bar
-      const scrollProgress = document.getElementById("scroll-progress");
-      function updateScrollProgress() {
-        if (!scrollProgress) return;
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        scrollProgress.style.width = docHeight > 0 ? `${(scrollTop / docHeight) * 100}%` : "0%";
-      }
-      window.addEventListener("scroll", updateScrollProgress, { passive: true });
-      updateScrollProgress();
+      // Desktop: drag within viewport to scroll carousel
+      if (menuViewport && menuTrack) {
+        let isPointerDragging = false;
+        let pointerStartX = 0;
+        let pointerStartScroll = 0;
+        let pointerDidDrag = false;
 
-      // Scroll reveal (Intersection Observer)
-      const revealEls = document.querySelectorAll(".reveal, .reveal-scale, .reveal-left, .reveal-right");
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-        );
-        revealEls.forEach((el) => observer.observe(el));
-      } else {
-        revealEls.forEach((el) => el.classList.add("is-visible"));
-      }
+        menuViewport.addEventListener("mousedown", (event) => {
+          if (!desktopCarouselMq.matches || event.button !== 0) return;
+          const target = event.target as HTMLElement;
+          if (target.closest("button, a")) return;
 
-      // Hero entrance on load
-      requestAnimationFrame(() => {
-        document.querySelectorAll(".reveal-left, .reveal-right").forEach((el) => {
-          if (el.getBoundingClientRect().top < window.innerHeight) {
-            el.classList.add("is-visible");
+          isPointerDragging = true;
+          pointerDidDrag = false;
+          pointerStartX = event.pageX;
+          pointerStartScroll = menuTrack.scrollLeft;
+          menuViewport.classList.add("menu-carousel-viewport--dragging");
+        });
+
+        window.addEventListener("mousemove", (event) => {
+          if (!isPointerDragging) return;
+          const delta = event.pageX - pointerStartX;
+          if (Math.abs(delta) > 4) pointerDidDrag = true;
+          menuTrack.scrollLeft = pointerStartScroll - delta;
+        });
+
+        window.addEventListener("mouseup", (event) => {
+          if (!isPointerDragging) return;
+          isPointerDragging = false;
+          menuViewport.classList.remove("menu-carousel-viewport--dragging");
+
+          if (!desktopCarouselMq.matches || !pointerDidDrag) return;
+
+          const delta = event.pageX - pointerStartX;
+          syncMenuIndexFromScroll();
+
+          if (Math.abs(delta) > 48) {
+            goToMenuSlide(menuSlideIndex + (delta > 0 ? -1 : 1));
+          } else {
+            goToMenuSlide(menuSlideIndex);
           }
         });
-      });
+
+        menuViewport.addEventListener(
+          "click",
+          (event) => {
+            if (!pointerDidDrag) return;
+            event.preventDefault();
+            event.stopPropagation();
+            pointerDidDrag = false;
+          },
+          true,
+        );
+      }
+
     </script>
   </body>
 </html>
