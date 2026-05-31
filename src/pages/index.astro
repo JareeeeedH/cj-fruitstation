@@ -19,6 +19,16 @@ const siteDescription =
 const seoKeywords =
   "旗津必吃,旗津隱藏版美食,旗津果汁,旗津美食,旗津一日遊推薦,高雄現打果汁,旗津冰沙,旗津現打果汁,中洲三路,旗津渡輪站,海洋科技大學,木瓜牛奶,芒果冰沙";
 
+/** Google 商家分享連結；若之後取得 maps.app.goo.gl 或 maps/place 網址可替換 */
+const googleMapsBusinessUrl = "https://share.google/StZPMmKi1FWhPlkb0";
+/** 有 FB／IG 再填，沒有可留空 */
+const facebookUrl = "";
+const instagramUrl = "";
+
+const sameAs = [googleMapsBusinessUrl, facebookUrl, instagramUrl].filter(
+  (url) => url.startsWith("http")
+);
+
 const storePhone = "0987-553-799";
 const storePhoneHref = "tel:+886987553799";
 
@@ -238,6 +248,7 @@ const jsonLd = {
   priceRange: "$$",
   servesCuisine: "Fresh Juice, Smoothie",
   url: siteUrl,
+  ...(sameAs.length > 0 ? { sameAs } : {}),
 };
 
 ---
