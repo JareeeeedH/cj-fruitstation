@@ -1,12 +1,12 @@
 ---
 import "../styles/global.css";
 
-const imgHero = "/juice-1.png";
-const imgStorefront = "/homePhoto-3.jpg";
-const imgMenuProduct = "/juice-2.png";
+const imgHero = "/juice-1.webp";
+const imgStorefront = "/homePhoto-3.webp";
+const imgMenuProduct = "/juice-2.webp";
 
 const brandName = "旗津蔬果茶飲";
-const brandTagline = "現點現打 · 二十年在旗津";
+const brandTagline = "現點現打 · 真水果，現場做";
 const brandSlogan = "卡你牙的不只是剛剛的食物，也會是果肉。";
 
 const siteUrl = Astro.site?.href ?? Astro.url.origin;
@@ -52,7 +52,7 @@ const menuItems = [
   {
     name: "石蓮花奇異果",
     nameEn: "Cactus Pear & Kiwi",
-    image: "/menu-cactus-kiwi.png",
+    image: "/menu-cactus-kiwi.webp",
     price: 85,
     tag: "招牌推薦",
     tagColor: "bg-mango-500",
@@ -62,7 +62,7 @@ const menuItems = [
   {
     name: "蔓越莓汁",
     nameEn: "Antioxidant Cranberry",
-    image: "/menu-cranberry.png",
+    image: "/menu-cranberry.webp",
     price: 80,
     tag: "老店研發",
     tagColor: "bg-mint-500",
@@ -72,7 +72,7 @@ const menuItems = [
   {
     name: "芒果冰沙",
     nameEn: "Mango Smoothie",
-    image: "/menu-mango-smoothie.png",
+    image: "/menu-mango-smoothie.webp",
     price: 75,
     tag: "20年經典",
     tagColor: "bg-mango-400",
@@ -82,7 +82,7 @@ const menuItems = [
   {
     name: "紅龍果牛奶",
     nameEn: "Dragon Fruit Milk",
-    image: "/menu-dragon-fruit-milk.png",
+    image: "/menu-dragon-fruit-milk.webp",
     price: 70,
     tag: "在地最愛",
     tagColor: "bg-mint-600",
@@ -92,7 +92,7 @@ const menuItems = [
   {
     name: "綜合蔬果汁",
     nameEn: "Mixed Veggie Juice",
-    image: "/menu-mixed-veggie.png",
+    image: "/menu-mixed-veggie.webp",
     price: 65,
     tag: "健康首選",
     tagColor: "bg-mint-400",
@@ -102,7 +102,7 @@ const menuItems = [
   {
     name: "經典木瓜牛奶",
     nameEn: "Classic Papaya Milk",
-    image: "/menu-papaya-milk.png",
+    image: "/menu-papaya-milk.webp",
     price: 65,
     tag: "20年經典",
     tagColor: "bg-mango-500",
@@ -112,7 +112,7 @@ const menuItems = [
   {
     name: "葡萄多多",
     nameEn: "Grape Duoduo",
-    image: "/menu-grape-duoduo.png",
+    image: "/menu-grape-duoduo.webp",
     price: 70,
     tag: "人氣必點",
     tagColor: "bg-mint-500",
@@ -122,7 +122,7 @@ const menuItems = [
   {
     name: "綠豆沙牛奶",
     nameEn: "Mung Bean Milk",
-    image: "/menu-mung-bean-milk.png",
+    image: "/menu-mung-bean-milk.webp",
     price: 65,
     tag: "南部經典",
     tagColor: "bg-mango-400",
@@ -383,9 +383,12 @@ const jsonLd = {
               >
                 🌴 在地經營20餘年 · 內行人的營養補充站
               </span>
-              <h1 class="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-                <strong class="bg-gradient-to-r from-mango-600 to-mango-500 bg-clip-text text-transparent">{brandName}</strong><br />
-                <span class="gradient-heading">{brandTagline}</span>
+              <h1 class="hero-headline">
+                <span class="hero-brand-wrap">
+                  <strong class="hero-brand-title">{brandName}</strong>
+                  <span class="hero-brand-accent" aria-hidden="true"></span>
+                </span>
+                <span class="gradient-heading hero-tagline">{brandTagline}</span>
               </h1>
               <ul class="hero-points max-w-lg" aria-label="店家特色">
                 {

@@ -483,6 +483,65 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.hero-headline {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero-brand-wrap {
+  display: block;
+  margin-bottom: 0.625rem;
+}
+
+.hero-brand-title {
+  display: block;
+  font-size: clamp(1.875rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  background: linear-gradient(
+    105deg,
+    var(--color-mango-600) 0%,
+    var(--color-mango-500) 72%,
+    var(--color-mango-400) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 1px 2px rgba(249, 115, 22, 0.12))
+    drop-shadow(0 0 18px rgba(249, 115, 22, 0.14));
+}
+
+.hero-brand-accent {
+  display: block;
+  margin-top: 0.75rem;
+  height: 3px;
+  width: 3.5rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-mango-500), var(--color-mango-400));
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.25);
+}
+
+.hero-tagline {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-tagline {
+    font-size: 1.1875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-tagline {
+    font-size: 1.3125rem;
+  }
+}
+
 .hero-mesh {
   background:
     radial-gradient(ellipse 80% 60% at 10% 20%, rgba(249, 115, 22, 0.14), transparent 50%),
