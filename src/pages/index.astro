@@ -1,60 +1,48 @@
 ---
 import "../styles/global.css";
+import StoreContact from "../components/StoreContact.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import {
+  brandName,
+  brandSlogan,
+  brandTagline,
+  facebookUrl,
+  googleMapsBusinessUrl,
+  instagramUrl,
+  shortBrandName,
+} from "../data/store.ts";
 
 const imgHero = "/juice-1.webp";
 const imgStorefront = "/homePhoto-3.webp";
 const imgMenuProduct = "/juice-2.webp";
 
-const brandName = "旗津蔬果茶飲";
-const brandTagline = "現點現打 · 真水果，現場做";
-const brandSlogan = "卡你牙的不只是剛剛的食物，也會是果肉。";
-
 const siteUrl = Astro.site?.href ?? Astro.url.origin;
 const ogImage = new URL(imgStorefront, siteUrl).href;
 
-const siteTitle = `旗津必吃、旗津隱藏版美食｜旗津果汁 — ${brandName}`;
+const siteTitle = `${shortBrandName}｜旗津果汁 · 現打現做`;
 const siteDescription =
-  `${brandName}：旗津必吃、旗津隱藏版美食名單裡常被忽略的現打果汁老店，旗津果汁現場點、現做。在地20餘年，中洲三路641，渡輪站步行約6分鐘、海科大斜對面約1分鐘。平日10:00–20:00；週末10:00–18:00（亦可能更早），來電 0987-553-799 確認。`;
+  `${shortBrandName}：中洲三路641，在地20餘年現打果汁。現點現打、真水果現場做。渡輪站步行約6分鐘、海科大斜對面。平日10:00–20:00；週末10:00–18:00（亦可能更早），0987-553-799。`;
 
 const seoKeywords =
   "旗津必吃,旗津隱藏版美食,旗津果汁,旗津美食,旗津一日遊推薦,高雄現打果汁,旗津冰沙,旗津現打果汁,中洲三路,旗津渡輪站,海洋科技大學,木瓜牛奶,芒果冰沙";
-
-/** Google 商家分享連結；若之後取得 maps.app.goo.gl 或 maps/place 網址可替換 */
-const googleMapsBusinessUrl = "https://share.google/StZPMmKi1FWhPlkb0";
-/** 有 FB／IG 再填，沒有可留空 */
-const facebookUrl = "";
-const instagramUrl = "";
 
 const sameAs = [googleMapsBusinessUrl, facebookUrl, instagramUrl].filter(
   (url) => url.startsWith("http")
 );
 
-const storePhone = "0987-553-799";
-const storePhoneHref = "tel:+886987553799";
-
-const businessHours = {
-  weekday: "週一至週五 10:00－20:00",
-  weekend: "週六、週日 10:00－18:00（亦可能更早）",
-  note:
-    "週末僅營業至下午，亦有可能更早打烊——週末沒有上班族與學生，闆娘要早點休息。建議前來的旅客可先來電確認。",
-  phone: storePhone,
-  phoneHref: storePhoneHref,
-};
-
 const heroPoints = [
-  { mark: "📍", text: "在地經營、用料實在。" },
   { mark: "👤", text: "當地居民與學生，每天來這補一杯。" },
-  { mark: "✓", text: "中洲三路641，渡輪站步行約 6 分鐘、海科大斜對面。" },
+  { mark: "✓", text: "渡輪站步行約 6 分鐘、海科大斜對面。" },
 ];
 
 const ownerStories = [
   {
     title: "闆娘日常：跟果農較真",
-    text: "雨季或耕作不好，水果品質差，果農還說「幫忙銷貨，打果汁沒關係吧」。闆娘當場嗆：「你賣這什麼垃圾給我啊！」——為此沒少跟果農吵架。",
+    text: "雨季或耕作不好，果農常拿次級果來銷貨，還說打果汁沒差。闆娘不買帳，當場嗆：「你賣這什麼垃圾給我！」——為此沒少跟果農吵。",
   },
   {
     title: "闆娘堅持：塑化劑風波",
-    text: "想起塑化劑風波那段日子，大家不敢喝飲料，瞬間湧入大批想喝果汁的客人。闆娘堅持現點現打、真水果不打折——二十年走下來，就希望大家喝得安心，也喝得健康。",
+    text: "塑化劑風波那陣子，大家不敢喝手搖，反而來排現打果汁。闆娘一樣堅持現點現打、真水果——二十年來，就圖大家喝得安心、健康。",
   },
 ];
 
@@ -63,7 +51,6 @@ const menuItems = [
     name: "石蓮花奇異果",
     nameEn: "Cactus Pear & Kiwi",
     image: "/menu-cactus-kiwi.webp",
-    price: 85,
     tag: "招牌推薦",
     tagColor: "bg-mango-500",
     intro: "富含維他命C，酸酸甜甜清涼順口，退火消暑走累首選。",
@@ -73,8 +60,7 @@ const menuItems = [
     name: "蔓越莓汁",
     nameEn: "Antioxidant Cranberry",
     image: "/menu-cranberry.webp",
-    price: 80,
-    tag: "老店研發",
+    tag: "人氣必點",
     tagColor: "bg-mint-500",
     intro: "現榨酸甜，抗氧化系飲品，內行女生常來的秘密杯。",
     taste: { sour: 72, sweet: 28 },
@@ -83,7 +69,6 @@ const menuItems = [
     name: "芒果冰沙",
     nameEn: "Mango Smoothie",
     image: "/menu-mango-smoothie.webp",
-    price: 75,
     tag: "20年經典",
     tagColor: "bg-mango-400",
     intro: "濃郁香甜沁涼順口，不膩解熱，老街逛完最想來一杯。",
@@ -93,7 +78,6 @@ const menuItems = [
     name: "紅龍果牛奶",
     nameEn: "Dragon Fruit Milk",
     image: "/menu-dragon-fruit-milk.webp",
-    price: 70,
     tag: "在地最愛",
     tagColor: "bg-mint-600",
     intro: "甜菜紅素抗氧化，粉嫩順口綿密，午後補元氣好選擇。",
@@ -103,7 +87,6 @@ const menuItems = [
     name: "綜合蔬果汁",
     nameEn: "Mixed Veggie Juice",
     image: "/menu-mixed-veggie.webp",
-    price: 65,
     tag: "健康首選",
     tagColor: "bg-mint-400",
     intro: "當季現榨高膳食纖維，清甜不生澀，顧健康內行都愛點。",
@@ -113,7 +96,6 @@ const menuItems = [
     name: "經典木瓜牛奶",
     nameEn: "Classic Papaya Milk",
     image: "/menu-papaya-milk.webp",
-    price: 65,
     tag: "20年經典",
     tagColor: "bg-mango-500",
     intro: "濃稠順口不死甜，天然酵素助消化，老客二十年不離手。",
@@ -123,7 +105,6 @@ const menuItems = [
     name: "葡萄多多",
     nameEn: "Grape Duoduo",
     image: "/menu-grape-duoduo.webp",
-    price: 70,
     tag: "人氣必點",
     tagColor: "bg-mint-500",
     intro: "酸甜微氣泡感，沁涼解暑順口，夏天走熱最想再來杯。",
@@ -133,7 +114,6 @@ const menuItems = [
     name: "綠豆沙牛奶",
     nameEn: "Mung Bean Milk",
     image: "/menu-mung-bean-milk.webp",
-    price: 65,
     tag: "南部經典",
     tagColor: "bg-mango-400",
     intro: "綿密砂感消暑退火，順口不膩，南部老客說最實在的一杯。",
@@ -213,8 +193,8 @@ const articles = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "JuiceBar",
-  name: brandName,
-  alternateName: ["旗津必吃", "旗津隱藏版美食", "旗津果汁"],
+  name: shortBrandName,
+  alternateName: [brandName, "旗津果汁", "旗津現打果汁"],
   description: siteDescription,
   image: ogImage,
   address: {
@@ -255,7 +235,7 @@ const jsonLd = {
 
 <!doctype html>
 <html lang="zh-Hant">
-  <head>
+	<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
@@ -274,7 +254,7 @@ const jsonLd = {
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:site_name" content={brandName} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content={`${brandName} — 旗津必吃現打果汁`} />
+    <meta property="og:image:alt" content={`${shortBrandName} — 旗津現打果汁`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -284,7 +264,7 @@ const jsonLd = {
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -294,7 +274,7 @@ const jsonLd = {
     />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  </head>
+	</head>
 
   <body class="overflow-x-hidden text-gray-800 antialiased">
     <!-- ========== Header / Nav ========== -->
@@ -305,9 +285,11 @@ const jsonLd = {
       >
         <a href="/" class="group flex min-w-0 items-center gap-2">
           <span
-            class="logo-glow flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg text-white"
+            class="logo-glow flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl"
             aria-hidden="true"
-          >🍊</span>
+          >
+            <img src="/favicon.svg" alt="" class="nav-logo" width="28" height="28" />
+          </span>
           <div class="hidden min-w-0 leading-tight md:block">
             <span class="block text-sm font-extrabold text-mango-600 lg:text-base">
               {brandName}
@@ -323,12 +305,6 @@ const jsonLd = {
 
         <div class="flex shrink-0 items-center gap-2">
           <ul class="hidden items-center gap-1 md:order-1 md:flex">
-            <li>
-              <a
-                href="#menu"
-                class="nav-link-modern rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:text-mango-600"
-              >果汁好物</a>
-            </li>
             <li>
               <a
                 href="#about"
@@ -379,7 +355,6 @@ const jsonLd = {
 
       <div id="mobile-nav-panel" class="mobile-nav-panel md:hidden" hidden>
         <ul class="mobile-nav-panel__list">
-          <li><a href="#menu" class="mobile-nav-panel__link">果汁好物</a></li>
           <li><a href="#about" class="mobile-nav-panel__link">關於蔬果茶飲</a></li>
           <li><a href="#location" class="mobile-nav-panel__link">店面位置</a></li>
           <li><a href="#guide" class="mobile-nav-panel__link">觀光導覽</a></li>
@@ -408,10 +383,24 @@ const jsonLd = {
         </div>
 
         <div class="hero-inner relative mx-auto max-w-6xl px-4 sm:px-6">
-          <div class="grid items-center gap-8 lg:grid-cols-2">
-            <div>
+          <div class="hero-grid lg:grid-cols-2">
+            <div class="hero-grid__media">
+              <div class="hero-media-frame relative aspect-[4/3] overflow-hidden sm:aspect-[5/4] lg:rounded-3xl lg:shadow-lg lg:shadow-mango-500/10 lg:ring-1 lg:ring-black/5">
+                <img
+                  src={imgHero}
+                  alt={`${brandName}現打鮮果汁`}
+                  class="hero-media-frame__photo h-full w-full object-cover"
+                  width={800}
+                  height={600}
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </div>
+            </div>
+
+            <div class="hero-grid__content">
               <span
-                class="tech-pill mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-mint-600"
+                class="tech-pill mb-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-mint-600 sm:mb-4"
               >
                 🌴 在地經營20餘年 · 內行人的營養補充站
               </span>
@@ -432,7 +421,7 @@ const jsonLd = {
                   ))
                 }
               </ul>
-              <div class="hero-actions mt-8 flex flex-wrap gap-3">
+              <div class="hero-actions mt-6 flex flex-wrap gap-3 sm:mt-8">
                 <a href="#menu" class="hero-btn hero-btn--primary">
                   <span class="hero-btn__glyph" aria-hidden="true">
                     <svg class="hero-btn__juice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -457,31 +446,17 @@ const jsonLd = {
                 </a>
               </div>
             </div>
-
-            <div>
-              <div class="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-mango-500/10 ring-1 ring-black/5">
-                <img
-                  src={imgHero}
-                  alt={`${brandName}現打鮮果汁`}
-                  class="h-full w-full object-cover"
-                  width={800}
-                  height={600}
-                  loading="eager"
-                  fetchpriority="high"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- ========== 果汁好物（banner 下方） ========== -->
+      <!-- ========== 推薦飲品（banner 下方） ========== -->
       <section id="menu" class="section-bg section-bg-menu scroll-mt-20 section-after-hero">
         <div class="tech-grid-layer" aria-hidden="true"></div>
         <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
           <div class="mb-6 text-left">
             <span class="section-badge tech-badge">Fresh Menu</span>
-            <h2 class="section-title-tech mt-3">果汁好物</h2>
+            <h2 class="section-title-tech mt-3">推薦飲品</h2>
             <div class="section-accent-line"></div>
             <div class="menu-intro mt-3 max-w-2xl">
               <p>推薦從這八杯認識起，現場點、現打現做。</p>
@@ -493,6 +468,12 @@ const jsonLd = {
           </div>
 
           <div class="menu-carousel-wrap" id="menu-carousel-wrap">
+            <p
+              class="carousel-hint carousel-hint--desktop hidden lg:block"
+              id="menu-carousel-hint-desktop"
+            >
+              拖曳或點「上一杯／下一杯」切換 · 共 {menuItems.length} 杯
+            </p>
             <div class="menu-carousel-viewport" id="menu-carousel-viewport">
               <div class="menu-carousel-track" id="menu-carousel-track">
                 {
@@ -520,7 +501,7 @@ const jsonLd = {
                       </div>
 
                       <div class="menu-slide-body p-5 sm:p-6">
-                        <h3 class="menu-slide-title text-xl font-bold leading-snug text-gray-900 sm:text-lg lg:text-base">{item.name}</h3>
+                        <h3 class="menu-slide-title text-lg font-bold leading-snug text-gray-900 sm:text-xl">{item.name}</h3>
                         <p class="mt-1 text-xs text-gray-400">{item.nameEn}</p>
                         <div
                           class="taste-dial mt-3"
@@ -552,6 +533,16 @@ const jsonLd = {
                   ))
                 }
               </div>
+              <span class="carousel-edge-cue carousel-edge-cue--prev lg:hidden" aria-hidden="true">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </span>
+              <span class="carousel-edge-cue carousel-edge-cue--next lg:hidden" aria-hidden="true">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
             </div>
 
             <div class="carousel-controls">
@@ -581,6 +572,13 @@ const jsonLd = {
             </div>
 
             <div class="carousel-dots-wrap">
+              <p
+                class="carousel-progress lg:hidden"
+                id="menu-carousel-progress"
+                aria-live="polite"
+              >
+                <span class="carousel-progress__current" id="menu-carousel-progress-current">1</span> / {menuItems.length}
+              </p>
               <div class="carousel-dots" id="menu-carousel-dots" role="tablist" aria-label="推薦飲品切換">
                 {
                   menuItems.map((item, i) => (
@@ -601,8 +599,8 @@ const jsonLd = {
         </div>
       </section>
 
-      <!-- ========== 關於蔬果茶飲 + 店面位置 ========== -->
-      <section id="about" class="section-bg section-bg-about section-intro scroll-mt-20">
+      <!-- ========== 關於蔬果茶飲 ========== -->
+      <section id="about" class="section-bg section-bg-about scroll-mt-20 section-compact">
         <div class="tech-grid-layer" aria-hidden="true"></div>
         <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
           <div class="section-block-header text-left">
@@ -631,8 +629,14 @@ const jsonLd = {
                   <p>除了經典產地鮮果，還有老店自己研發的頂級蔬果吧——品項多到你會選擇障礙，內行都知道來這裡就對了。</p>
                 </div>
 
-                <div class="owner-stories">
-                  <h4 class="owner-stories__heading">為什麼喝得安心</h4>
+                <details class="owner-stories-accordion">
+                  <summary class="owner-stories-accordion__trigger">
+                    <span class="owner-stories-accordion__label">為什麼喝得安心</span>
+                    <span class="owner-stories-accordion__hint">點開看闆娘故事</span>
+                    <svg class="owner-stories-accordion__chevron" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
                   <div class="owner-stories__grid">
                     {
                       ownerStories.map((story) => (
@@ -643,7 +647,7 @@ const jsonLd = {
                       ))
                     }
                   </div>
-                </div>
+                </details>
               </div>
             </div>
 
@@ -660,76 +664,22 @@ const jsonLd = {
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div id="location" class="about-location scroll-mt-20">
-            <div class="section-block-header section-heading-wrap text-left">
-              <span class="section-badge tech-badge">Location</span>
-              <h2 class="section-title-tech">店面位置</h2>
-              <div class="section-accent-line"></div>
-            </div>
-            <div class="store-hours mb-4">
-              <h3 class="store-hours__title">營業時間</h3>
-              <ul class="store-hours__list">
-                <li><span class="store-hours__label">平日</span>{businessHours.weekday}</li>
-                <li><span class="store-hours__label">週末</span>{businessHours.weekend}</li>
-              </ul>
-              <p class="store-hours__note">{businessHours.note}</p>
-              <p class="store-hours__phone">
-                預約／確認營業：
-                <a href={businessHours.phoneHref} class="store-hours__phone-link">
-                  {businessHours.phone}
-                </a>
-              </p>
-            </div>
-            <div class="location-info mb-3">
-              <p class="location-info__address">
-                <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>高雄市旗津區中洲三路641</span>
-              </p>
-              <ul class="location-info__refs list-none p-0">
-                <li class="location-info__ref">
-                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>距離旗津渡輪站步行約 6 分鐘</span>
-                </li>
-                <li class="location-info__ref">
-                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>海洋科技大學斜對面，走路約 1 分鐘</span>
-                </li>
-              </ul>
-            </div>
-            <div
-              id="map-placeholder"
-              class="relative h-56 overflow-hidden rounded-2xl border border-gray-200/80 shadow-md shadow-gray-200/40 sm:h-72"
-              aria-label={`${brandName}店面地圖`}
-            >
-              <iframe
-                src="https://maps.google.com/maps?q=%E9%AB%98%E9%9B%84%E5%B8%82%E6%97%97%E6%B4%A5%E5%8D%80%E4%B8%AD%E5%B7%9E%E4%B8%89%E8%B7%AF641&hl=zh-TW&z=17&output=embed"
-                class="absolute inset-0 h-full w-full border-0"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title={`${brandName} | 中洲三路641 店面位置`}
-              ></iframe>
-            </div>
-            <p class="mt-2 text-left text-xs text-gray-400">
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E9%9B%84%E5%B8%82%E6%97%97%E6%B4%A5%E5%8D%80%E4%B8%AD%E5%B7%9E%E4%B8%89%E8%B7%AF641"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-medium text-mango-600 hover:text-mango-700"
-              >
-                在 Google 地圖開啟導航 →
-              </a>
+      <!-- ========== 店面位置 ========== -->
+      <section id="location" class="section-bg section-bg-location scroll-mt-20 section-compact">
+        <div class="tech-grid-layer" aria-hidden="true"></div>
+        <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="section-block-header section-heading-wrap text-left">
+            <span class="section-badge tech-badge">Location</span>
+            <h2 class="section-title-tech">店面位置</h2>
+            <div class="section-accent-line"></div>
+            <p class="max-w-2xl text-gray-600">
+              走旗津動線路過中洲三路，歡迎進店；出發前可先來電確認週末是否提早打烊。
             </p>
           </div>
+          <StoreContact />
         </div>
       </section>
 
@@ -862,61 +812,7 @@ const jsonLd = {
       </section>
     </main>
 
-    <!-- ========== Footer ========== -->
-    <footer class="section-bg section-bg-footer relative py-10">
-      <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="flex flex-col items-start gap-6">
-          <div class="text-left">
-            <p class="text-lg font-extrabold text-mango-600">{brandName}</p>
-            <div class="location-info location-info--footer mt-2">
-              <p class="location-info__address">
-                <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>高雄市旗津區中洲三路641</span>
-              </p>
-              <ul class="location-info__refs list-none p-0">
-                <li class="location-info__ref">
-                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>距離旗津渡輪站步行約 6 分鐘</span>
-                </li>
-                <li class="location-info__ref">
-                  <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>海洋科技大學斜對面，走路約 1 分鐘</span>
-                </li>
-              </ul>
-              <p class="store-hours__footer mt-3 text-sm text-gray-500">
-                <span class="font-semibold text-gray-700">營業時間</span><br />
-                {businessHours.weekday}<br />
-                {businessHours.weekend}<br />
-                <span class="text-xs text-gray-400">{businessHours.note}</span><br />
-                <a href={businessHours.phoneHref} class="store-hours__phone-link mt-1 inline-block text-sm font-semibold text-mango-600 hover:text-mango-700">
-                  {businessHours.phone}
-                </a>
-              </p>
-            </div>
-          </div>
-          <nav aria-label="頁尾導覽">
-            <ul class="flex flex-wrap justify-start gap-4 text-sm text-gray-500">
-              <li><a href="#menu" class="hover:text-mango-600">果汁好物</a></li>
-              <li><a href="#about" class="hover:text-mango-600">關於蔬果茶飲</a></li>
-              <li><a href="#guide" class="hover:text-mango-600">觀光導覽</a></li>
-              <li><a href="#reading" class="hover:text-mango-600">水果讀物</a></li>
-            </ul>
-          </nav>
-        </div>
-        <p class="mt-8 text-left text-xs text-gray-400">
-          © {new Date().getFullYear()} {brandName}. All rights reserved.
-        </p>
-      </div>
-    </footer>
+    <SiteFooter />
 
     <button
       type="button"
@@ -976,17 +872,68 @@ const jsonLd = {
         window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
       });
 
-      // Menu carousel (mobile: 1 slide · desktop: 3 columns)
+      // Menu carousel (mobile/tablet: 2-up peek · desktop: 3 columns)
       const menuTrack = document.getElementById("menu-carousel-track");
       const menuViewport = document.getElementById("menu-carousel-viewport");
       const menuSlides = menuTrack?.querySelectorAll<HTMLElement>(".menu-carousel-slide");
       const menuDots = document.querySelectorAll<HTMLButtonElement>(".carousel-dot");
       let menuSlideIndex = 0;
+      let carouselPeekNudged = false;
+      let carouselHasInteracted = false;
 
       const desktopCarouselMq = window.matchMedia("(min-width: 1024px)");
+      const tabletCarouselMq = window.matchMedia("(min-width: 640px) and (max-width: 1023px)");
+
+      const carouselHints = [
+        document.getElementById("menu-carousel-hint-desktop"),
+      ].filter((el): el is HTMLElement => el instanceof HTMLElement);
+
+      function dismissCarouselHints() {
+        carouselHints.forEach((el) => el.classList.add("carousel-hint--dismissed"));
+      }
+
+      function markCarouselInteracted() {
+        if (carouselHasInteracted || !menuViewport) return;
+        carouselHasInteracted = true;
+        menuViewport.classList.add("has-interacted");
+      }
+
+      function runCarouselPeekNudge() {
+        if (carouselPeekNudged || carouselHasInteracted || !menuTrack) return;
+        if (desktopCarouselMq.matches) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        carouselPeekNudged = true;
+        const start = menuTrack.scrollLeft;
+        const nudge = Math.min(44, menuTrack.clientWidth * 0.11);
+
+        menuTrack.scrollTo({ left: start + nudge, behavior: "smooth" });
+        window.setTimeout(() => {
+          menuTrack.scrollTo({ left: start, behavior: "smooth" });
+        }, 700);
+      }
+
+      const menuProgressCurrent = document.getElementById("menu-carousel-progress-current");
+
+      function updateCarouselScrollState() {
+        if (!menuTrack || !menuViewport) return;
+
+        const { scrollLeft, scrollWidth, clientWidth } = menuTrack;
+        const atStart = scrollLeft <= 8;
+        const atEnd = scrollLeft + clientWidth >= scrollWidth - 8;
+
+        menuViewport.classList.toggle("is-at-start", atStart);
+        menuViewport.classList.toggle("is-at-end", atEnd);
+
+        if (menuProgressCurrent) {
+          menuProgressCurrent.textContent = String(menuSlideIndex + 1);
+        }
+      }
 
       function getSlidesPerView() {
-        return desktopCarouselMq.matches ? 3 : 1;
+        if (desktopCarouselMq.matches) return 3;
+        if (tabletCarouselMq.matches) return 2;
+        return 1;
       }
 
       function updateActiveDots() {
@@ -1025,14 +972,15 @@ const jsonLd = {
         menuSlideIndex = Math.max(0, Math.min(index, maxStart));
 
         const target = menuSlides[menuSlideIndex];
-        const inline = desktopCarouselMq.matches ? "start" : "center";
 
         target?.scrollIntoView({
           behavior: "smooth",
-          inline,
+          inline: "start",
           block: "nearest",
         });
         updateActiveDots();
+        updateCarouselScrollState();
+        dismissCarouselHints();
       }
 
       function stepMenuCarousel(direction: number) {
@@ -1040,16 +988,26 @@ const jsonLd = {
       }
 
       document.getElementById("menu-carousel-prev")?.addEventListener("click", () => {
+        markCarouselInteracted();
         stepMenuCarousel(-1);
       });
       document.getElementById("menu-carousel-next")?.addEventListener("click", () => {
+        markCarouselInteracted();
         stepMenuCarousel(1);
       });
       menuDots.forEach((dot, i) => {
-        dot.addEventListener("click", () => goToMenuSlide(i));
+        dot.addEventListener("click", () => {
+          markCarouselInteracted();
+          goToMenuSlide(i);
+        });
       });
 
-      desktopCarouselMq.addEventListener("change", () => goToMenuSlide(menuSlideIndex));
+      const syncCarouselLayout = () => {
+        goToMenuSlide(menuSlideIndex);
+        updateCarouselScrollState();
+      };
+      desktopCarouselMq.addEventListener("change", syncCarouselLayout);
+      tabletCarouselMq.addEventListener("change", syncCarouselLayout);
 
       if (menuTrack && menuSlides?.length && "IntersectionObserver" in window) {
         const slideObserver = new IntersectionObserver(
@@ -1066,6 +1024,7 @@ const jsonLd = {
             if (bestRatio > 0.4 && bestIdx !== menuSlideIndex) {
               menuSlideIndex = bestIdx;
               updateActiveDots();
+              updateCarouselScrollState();
             }
           },
           { root: menuViewport ?? menuTrack, threshold: [0.4, 0.55, 0.7] }
@@ -1153,6 +1112,38 @@ const jsonLd = {
         );
       }
 
+      menuTrack?.addEventListener(
+        "scroll",
+        () => {
+          syncMenuIndexFromScroll();
+          updateActiveDots();
+          updateCarouselScrollState();
+          if (menuTrack && menuTrack.scrollLeft > 8) {
+            markCarouselInteracted();
+          }
+        },
+        { passive: true },
+      );
+
+      const menuSection = document.getElementById("menu");
+      if (menuSection && menuTrack && "IntersectionObserver" in window) {
+        const nudgeObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+                window.setTimeout(runCarouselPeekNudge, 1000);
+                nudgeObserver.disconnect();
+              }
+            });
+          },
+          { threshold: [0.3, 0.5] },
+        );
+        nudgeObserver.observe(menuSection);
+      }
+
+      updateCarouselScrollState();
+      window.addEventListener("resize", updateCarouselScrollState, { passive: true });
+
     </script>
-  </body>
+	</body>
 </html>

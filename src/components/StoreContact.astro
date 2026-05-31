@@ -1,0 +1,88 @@
+---
+import {
+  brandName,
+  businessHours,
+  mapsEmbedSrc,
+  mapsNavHref,
+  storeAddress,
+  storeLandmarks,
+} from "../data/store.ts";
+---
+
+<div class="location-actions md:hidden">
+  <a
+    href={mapsNavHref}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="location-actions__btn location-actions__btn--nav"
+  >
+    Google 地圖導航
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
+
+<div class="location-grid">
+  <div class="location-grid__info">
+    <div class="store-hours">
+      <h3 class="store-hours__title">營業時間</h3>
+      <ul class="store-hours__list">
+        <li><span class="store-hours__label">平日</span>{businessHours.weekday}</li>
+        <li><span class="store-hours__label">週末</span>{businessHours.weekend}</li>
+      </ul>
+      <p class="store-hours__note">{businessHours.note}</p>
+      <p class="store-hours__phone">
+        預約／確認營業：
+        <span class="store-hours__phone-number">{businessHours.phone}</span>
+      </p>
+    </div>
+
+    <div class="location-info">
+      <p class="location-info__address">
+        <svg class="location-info__address-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>{storeAddress}</span>
+      </p>
+      <ul class="location-info__refs list-none p-0">
+        {
+          storeLandmarks.map((landmark) => (
+            <li class="location-info__ref">
+              <svg class="location-info__landmark-icon" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>{landmark}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <p class="location-grid__nav-link hidden md:block">
+      <a
+        href={mapsNavHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-mango-600 hover:text-mango-700"
+      >
+        在 Google 地圖開啟導航 →
+      </a>
+    </p>
+  </div>
+
+  <div class="location-grid__map">
+    <div
+      class="location-map-frame"
+      aria-label={`${brandName}店面地圖`}
+    >
+      <iframe
+        src={mapsEmbedSrc}
+        class="location-map-frame__embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title={`${brandName} | 中洲三路641 店面位置`}
+      ></iframe>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+---
+import {
+  brandName,
+  brandTagline,
+  storeAddress,
+  storePhone,
+} from "../data/store.ts";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="section-bg section-bg-footer relative py-10">
+  <div class="section-inner mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="site-footer">
+      <div class="site-footer__brand">
+        <p class="site-footer__name">{brandName}</p>
+        <p class="site-footer__tagline">{brandTagline}</p>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="頁尾導覽">
+        <ul class="site-footer__nav-list">
+          <li><a href="#menu" class="site-footer__nav-link">推薦飲品</a></li>
+          <li><a href="#about" class="site-footer__nav-link">關於蔬果茶飲</a></li>
+          <li><a href="#location" class="site-footer__nav-link">店面位置</a></li>
+          <li><a href="#guide" class="site-footer__nav-link">觀光導覽</a></li>
+          <li><a href="#reading" class="site-footer__nav-link">水果讀物</a></li>
+        </ul>
+      </nav>
+
+      <p class="site-footer__contact">
+        <span class="site-footer__contact-text">{storePhone}</span>
+        <span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="#location" class="site-footer__contact-link">{storeAddress}</a>
+        <span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="#location" class="site-footer__contact-link">營業時間</a>
+      </p>
+    </div>
+
+    <p class="site-footer__copy">
+      © {year} {brandName}. All rights reserved.
+    </p>
+  </div>
+</footer>
